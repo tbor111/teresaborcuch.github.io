@@ -21,7 +21,6 @@ billboard = pd.read_csv("/Users/teresaborcuch/DSI-course-materials/curriculum/04
 billboard.head()
 
 
-<pre>
 ```
 
 | year | artist.inverted | track | time | genre | date.entered | date.peaked | x1st.week | x2nd.week | x3rd.week | ... | x67th.week | x68th.week | x69th.week | x70th.week | x71st.week | x72nd.week | x73rd.week | x74th.week | x75th.week | x76th.week |
@@ -31,10 +30,6 @@ billboard.head()
 | 2 | 2000 | Savage Garden | I Knew I Loved You | 4:07 | Rock | 1999-10-23 | 2000-01-29 | 71 | 48.0 | 43.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
 | 3 | 2000 | Madonna | Music | 3:45 | Rock | 2000-08-12 | 2000-09-16 | 41 | 23.0 | 18.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
 | 4 | 2000 | Aguilera, Christina | Come On Over Baby (All I Want Is You) | 3:38 | Rock | 2000-08-05 | 2000-10-14 | 57 | 47.0 | 45.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-
-```
-</pre>
-
 
 
 ## Plan of Attack:
@@ -131,11 +126,8 @@ for week in weeks:
 billboard['week'] = new_weeks
 billboard = billboard.sort_values(['track','week'])
 billboard.head()
+
 ```
-
-
-<pre>
-
 | track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
 |------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------|
 | 47 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
@@ -144,8 +136,6 @@ billboard.head()
 | 998 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
 | 1315 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
 
-
-</pre>
 
 ### Making a unique song dataframe
 
@@ -222,7 +212,6 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 
 
 
-<pre>
 
 |genre| weeks_in_top_hun|
 | --- | --- |
@@ -234,7 +223,6 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 | Rap | 14.596491 |
 | R&B | 11.347826 |
 
-</pre>
 
 
 
@@ -369,7 +357,6 @@ peak_genre.sort_values('days_til_peak')
 
 
 
-<pre>
 
 |days_til_peak | genre |
 | --- | --- |
@@ -380,8 +367,6 @@ peak_genre.sort_values('days_til_peak')
 | Country | 58.364865 |
 | Electronica | 61.250000 |
 | Latin | 64.555556 |
-
-</pre>
 
 
 
