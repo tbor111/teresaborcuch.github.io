@@ -469,7 +469,7 @@ plt.show()
 ```
 
 
-![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_26_0.png)
+![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_26_0.png?raw=true)
 
 
 Although the mean maximum ranking for all tracks is 43.9, because the mode is 1, we know that many songs achieve the number one spot over the course of a year. We can infer that there is a significant amount of turnover for the number one spot, and it isn't dominated by a single song for long.
@@ -563,7 +563,7 @@ plt.show()
 ```
 
 
-![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_32_0.png)
+![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_32_0.png?raw=true)
 
 
 The vast majority of songs peak under 100 days into their time in the Top 100 list.
@@ -646,7 +646,7 @@ plt.show()
 ```
 
 
-![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_36_0.png)
+![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_36_0.png?raw=true)
 
 
 It looks like January and December are the months with the most peak songs, but there may be some truth behind the idea of "summer jams" as many songs also seem to hit maximum ranking from July to September as well.
@@ -668,7 +668,7 @@ plt.show()
 ```
 
 
-![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_39_0.png)
+![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_39_0.png?raw=true)
 
 
 This plot lists the average ranking of all songs in the top four most represented genres over 76 weeks. From this, we can see that the genres that ranked the highest did not necessarily have the longest time on the list. All four genres have a characteristic 'U-shape' to their ranking in the first 20 weeks. However, R&B tracks seem to fall off the chart after their peak, while the other three genres stay in the top 100 for longer, but achieve lower weekly rankings. This may explain why R&B tracks have the highest average ranking: they don't stay on the chart long enough to see mediocrity.
