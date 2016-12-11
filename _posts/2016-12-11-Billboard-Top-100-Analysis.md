@@ -278,7 +278,7 @@ billboard.head()
 
 
 
-<pre>
+
 ```
 
  track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
@@ -291,7 +291,7 @@ billboard.head()
 
 
 ```
-</pre>
+
 
 ### Making a unique song dataframe
 
