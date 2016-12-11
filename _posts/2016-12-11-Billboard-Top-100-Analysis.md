@@ -406,7 +406,7 @@ plt.show()
 ```
 
 
-![png](teresaborcuch.github.io/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png)
+![png](/Users/teresaborcuch/teresaborcuch.github.io/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png)
 
 
 ### Which genre has the most tracks in the Top 100?
