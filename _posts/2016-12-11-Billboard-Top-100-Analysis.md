@@ -278,10 +278,10 @@ billboard.head()
 
 
 
-<pre>
+
 ```
 
-|track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
+| track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
 |------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------|
 | 47 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
 | 364 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 2 | 99.0 |
@@ -290,7 +290,6 @@ billboard.head()
 | 1315 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
 
 ```
-</pre>
 
 ### Making a unique song dataframe
 
