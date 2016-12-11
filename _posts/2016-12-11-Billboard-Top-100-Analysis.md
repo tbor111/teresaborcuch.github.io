@@ -280,104 +280,16 @@ billboard.head()
 
 
 <div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>track</th>
-      <th>artist</th>
-      <th>year</th>
-      <th>time</th>
-      <th>genre</th>
-      <th>date.entered</th>
-      <th>date.peaked</th>
-      <th>month.peaked</th>
-      <th>weeks_in_top_hun</th>
-      <th>days_til_peak</th>
-      <th>week</th>
-      <th>ranking</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>47</th>
-      <td>(Hot S**t) Country Grammar</td>
-      <td>Nelly</td>
-      <td>2000</td>
-      <td>4:17</td>
-      <td>Rap</td>
-      <td>2000-04-29</td>
-      <td>2000-09-16</td>
-      <td>09</td>
-      <td>34</td>
-      <td>140.0</td>
-      <td>1</td>
-      <td>100.0</td>
-    </tr>
-    <tr>
-      <th>364</th>
-      <td>(Hot S**t) Country Grammar</td>
-      <td>Nelly</td>
-      <td>2000</td>
-      <td>4:17</td>
-      <td>Rap</td>
-      <td>2000-04-29</td>
-      <td>2000-09-16</td>
-      <td>09</td>
-      <td>34</td>
-      <td>140.0</td>
-      <td>2</td>
-      <td>99.0</td>
-    </tr>
-    <tr>
-      <th>681</th>
-      <td>(Hot S**t) Country Grammar</td>
-      <td>Nelly</td>
-      <td>2000</td>
-      <td>4:17</td>
-      <td>Rap</td>
-      <td>2000-04-29</td>
-      <td>2000-09-16</td>
-      <td>09</td>
-      <td>34</td>
-      <td>140.0</td>
-      <td>3</td>
-      <td>96.0</td>
-    </tr>
-    <tr>
-      <th>998</th>
-      <td>(Hot S**t) Country Grammar</td>
-      <td>Nelly</td>
-      <td>2000</td>
-      <td>4:17</td>
-      <td>Rap</td>
-      <td>2000-04-29</td>
-      <td>2000-09-16</td>
-      <td>09</td>
-      <td>34</td>
-      <td>140.0</td>
-      <td>4</td>
-      <td>76.0</td>
-    </tr>
-    <tr>
-      <th>1315</th>
-      <td>(Hot S**t) Country Grammar</td>
-      <td>Nelly</td>
-      <td>2000</td>
-      <td>4:17</td>
-      <td>Rap</td>
-      <td>2000-04-29</td>
-      <td>2000-09-16</td>
-      <td>09</td>
-      <td>34</td>
-      <td>140.0</td>
-      <td>5</td>
-      <td>55.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
+ track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 47 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
+| 364 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 2 | 99.0 |
+| 681 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 3 | 96.0 |
+| 998 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
+| 1315 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
+
+</div>
 
 
 ### Making a unique song dataframe
