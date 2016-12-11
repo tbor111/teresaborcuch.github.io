@@ -25,157 +25,17 @@ billboard.head()
 
 ```
 <div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>artist.inverted</th>
-      <th>track</th>
-      <th>time</th>
-      <th>genre</th>
-      <th>date.entered</th>
-      <th>date.peaked</th>
-      <th>x1st.week</th>
-      <th>x2nd.week</th>
-      <th>x3rd.week</th>
-      <th>...</th>
-      <th>x67th.week</th>
-      <th>x68th.week</th>
-      <th>x69th.week</th>
-      <th>x70th.week</th>
-      <th>x71st.week</th>
-      <th>x72nd.week</th>
-      <th>x73rd.week</th>
-      <th>x74th.week</th>
-      <th>x75th.week</th>
-      <th>x76th.week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000</td>
-      <td>Destiny's Child</td>
-      <td>Independent Women Part I</td>
-      <td>3:38</td>
-      <td>Rock</td>
-      <td>2000-09-23</td>
-      <td>2000-11-18</td>
-      <td>78</td>
-      <td>63.0</td>
-      <td>49.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000</td>
-      <td>Santana</td>
-      <td>Maria, Maria</td>
-      <td>4:18</td>
-      <td>Rock</td>
-      <td>2000-02-12</td>
-      <td>2000-04-08</td>
-      <td>15</td>
-      <td>8.0</td>
-      <td>6.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2000</td>
-      <td>Savage Garden</td>
-      <td>I Knew I Loved You</td>
-      <td>4:07</td>
-      <td>Rock</td>
-      <td>1999-10-23</td>
-      <td>2000-01-29</td>
-      <td>71</td>
-      <td>48.0</td>
-      <td>43.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2000</td>
-      <td>Madonna</td>
-      <td>Music</td>
-      <td>3:45</td>
-      <td>Rock</td>
-      <td>2000-08-12</td>
-      <td>2000-09-16</td>
-      <td>41</td>
-      <td>23.0</td>
-      <td>18.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2000</td>
-      <td>Aguilera, Christina</td>
-      <td>Come On Over Baby (All I Want Is You)</td>
-      <td>3:38</td>
-      <td>Rock</td>
-      <td>2000-08-05</td>
-      <td>2000-10-14</td>
-      <td>57</td>
-      <td>47.0</td>
-      <td>45.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 83 columns</p>
+
+ year | artist.inverted | track | time | genre | date.entered | date.peaked | x1st.week | x2nd.week | x3rd.week | ... | x67th.week | x68th.week | x69th.week | x70th.week | x71st.week | x72nd.week | x73rd.week | x74th.week | x75th.week | x76th.week |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | 2000 | Destiny's Child | Independent Women Part I | 3:38 | Rock | 2000-09-23 | 2000-11-18 | 78 | 63.0 | 49.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 1 | 2000 | Santana | Maria, Maria | 4:18 | Rock | 2000-02-12 | 2000-04-08 | 15 | 8.0 | 6.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 2 | 2000 | Savage Garden | I Knew I Loved You | 4:07 | Rock | 1999-10-23 | 2000-01-29 | 71 | 48.0 | 43.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 3 | 2000 | Madonna | Music | 3:45 | Rock | 2000-08-12 | 2000-09-16 | 41 | 23.0 | 18.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 4 | 2000 | Aguilera, Christina | Come On Over Baby (All I Want Is You) | 3:38 | Rock | 2000-08-05 | 2000-10-14 | 57 | 47.0 | 45.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+
+5 rows × 83 columns
+
 </div>
 
 ```
