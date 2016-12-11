@@ -23,7 +23,7 @@ billboard.head()
 
 
 
-
+```
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -178,7 +178,7 @@ billboard.head()
 <p>5 rows × 83 columns</p>
 </div>
 
-
+```
 
 ## Plan of Attack:
 
