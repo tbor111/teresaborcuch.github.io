@@ -22,23 +22,16 @@ billboard.head()
 ```
 
 
+| year | artist.inverted | track | time | genre | date.entered | date.peaked | x1st.week | x2nd.week | x3rd.week | ... | x67th.week | x68th.week | x69th.week | x70th.week | x71st.week | x72nd.week | x73rd.week | x74th.week | x75th.week | x76th.week |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | 2000 | Destiny's Child | Independent Women Part I | 3:38 | Rock | 2000-09-23 | 2000-11-18 | 78 | 63.0 | 49.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 1 | 2000 | Santana | Maria, Maria | 4:18 | Rock | 2000-02-12 | 2000-04-08 | 15 | 8.0 | 6.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 2 | 2000 | Savage Garden | I Knew I Loved You | 4:07 | Rock | 1999-10-23 | 2000-01-29 | 71 | 48.0 | 43.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 3 | 2000 | Madonna | Music | 3:45 | Rock | 2000-08-12 | 2000-09-16 | 41 | 23.0 | 18.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 4 | 2000 | Aguilera, Christina | Come On Over Baby (All I Want Is You) | 3:38 | Rock | 2000-08-05 | 2000-10-14 | 57 | 47.0 | 45.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
 
-```
-<div>
 
- year | artist.inverted | track | time | genre | date.entered | date.peaked | x1st.week | x2nd.week | x3rd.week | ... | x67th.week | x68th.week | x69th.week | x70th.week | x71st.week | x72nd.week | x73rd.week | x74th.week | x75th.week | x76th.week |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | 2000 | Destiny's Child | Independent Women Part I | 3:38 | Rock | 2000-09-23 | 2000-11-18 | 78 | 63.0 | 49.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 1 | 2000 | Santana | Maria, Maria | 4:18 | Rock | 2000-02-12 | 2000-04-08 | 15 | 8.0 | 6.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 2 | 2000 | Savage Garden | I Knew I Loved You | 4:07 | Rock | 1999-10-23 | 2000-01-29 | 71 | 48.0 | 43.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 3 | 2000 | Madonna | Music | 3:45 | Rock | 2000-08-12 | 2000-09-16 | 41 | 23.0 | 18.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 4 | 2000 | Aguilera, Christina | Come On Over Baby (All I Want Is You) | 3:38 | Rock | 2000-08-05 | 2000-10-14 | 57 | 47.0 | 45.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
 
-5 rows × 83 columns
-
-</div>
-
-```
 
 ## Plan of Attack:
 
@@ -139,8 +132,6 @@ billboard.head()
 
 
 
-```
-
 | track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
 |------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------|
 | 47 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
@@ -149,7 +140,7 @@ billboard.head()
 | 998 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
 | 1315 | (Hot S**t) Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
 
-```
+
 
 ### Making a unique song dataframe
 
@@ -228,48 +219,17 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 
 
 <div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>weeks_in_top_hun</th>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Latin</th>
-      <td>19.222222</td>
-    </tr>
-    <tr>
-      <th>Rock</th>
-      <td>18.883212</td>
-    </tr>
-    <tr>
-      <th>Electronica</th>
-      <td>18.000000</td>
-    </tr>
-    <tr>
-      <th>Country</th>
-      <td>16.216216</td>
-    </tr>
-    <tr>
-      <th>Pop</th>
-      <td>15.222222</td>
-    </tr>
-    <tr>
-      <th>Rap</th>
-      <td>14.596491</td>
-    </tr>
-    <tr>
-      <th>R&amp;B</th>
-      <td>11.347826</td>
-    </tr>
-  </tbody>
-</table>
+
+|genre| weeks_in_top_hun|
+| --- | --- |
+| Latin | 19.222222 |
+| Rock | 18.883212 |
+| Electronica | 18.000000 |
+| Country | 16.216216 |
+| Pop | 15.222222 |
+| Rap | 14.596491 |
+| R&B | 11.347826 |
+
 </div>
 
 
@@ -343,50 +303,17 @@ top_tracks.pivot_table(index = ['genre'], values = ['ranking']).sort_values('ran
 
 
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ranking</th>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>R&amp;B</th>
-      <td>59.304348</td>
-    </tr>
-    <tr>
-      <th>Rap</th>
-      <td>51.614035</td>
-    </tr>
-    <tr>
-      <th>Country</th>
-      <td>49.554054</td>
-    </tr>
-    <tr>
-      <th>Electronica</th>
-      <td>49.250000</td>
-    </tr>
-    <tr>
-      <th>Pop</th>
-      <td>42.111111</td>
-    </tr>
-    <tr>
-      <th>Rock</th>
-      <td>36.072993</td>
-    </tr>
-    <tr>
-      <th>Latin</th>
-      <td>31.444444</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+
+|ranking | genre |
+| --- | --- |
+| R&B | 59.304348 |
+| Rap | 51.614035 |
+| Country | 49.554054 |
+| Electronica | 49.250000 |
+| Pop | 42.111111 |
+| Rock | 36.072993 |
+| Latin | 31.444444 |
+
 
 
 
@@ -439,48 +366,17 @@ peak_genre.sort_values('days_til_peak')
 
 
 <div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>days_til_peak</th>
-    </tr>
-    <tr>
-      <th>genre</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>R&amp;B</th>
-      <td>28.608696</td>
-    </tr>
-    <tr>
-      <th>Rap</th>
-      <td>42.000000</td>
-    </tr>
-    <tr>
-      <th>Pop</th>
-      <td>47.444444</td>
-    </tr>
-    <tr>
-      <th>Rock</th>
-      <td>57.072993</td>
-    </tr>
-    <tr>
-      <th>Country</th>
-      <td>58.364865</td>
-    </tr>
-    <tr>
-      <th>Electronica</th>
-      <td>61.250000</td>
-    </tr>
-    <tr>
-      <th>Latin</th>
-      <td>64.555556</td>
-    </tr>
-  </tbody>
-</table>
+
+|days_til_peak | genre |
+| --- | --- |
+| R&B | 28.608696 |
+| Rap | 42.000000 |
+| Pop | 47.444444 |
+| Rock | 57.072993 |
+| Country | 58.364865 |
+| Electronica | 61.250000 |
+| Latin | 64.555556 |
+
 </div>
 
 
