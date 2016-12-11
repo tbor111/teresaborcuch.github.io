@@ -552,7 +552,9 @@ print "Variance: ", np.var(top_tracks['ranking'])
 
 ```python
 plt.hist(top_tracks['ranking'],20)
-plt.xlim(100,0)
+plt.xlabel('Average Rank')
+plt.ylabel('Song Count')
+plt.xlim(0,100)
 plt.show()
 ```
 
