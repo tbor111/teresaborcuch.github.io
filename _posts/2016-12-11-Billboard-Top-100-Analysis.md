@@ -5,7 +5,7 @@ The Billboard Top 100 is a list of the most popular songs based on sales and air
 
 ## Preview of Initial Dataset
 
-The data contains 317 songs that ranked in Billboard's Top 100 list in the year 2000. Each row includes song title, artist, duration, genre, the date it first entered the list, the date it reached its highest ranking, and then its ranking for 76 weeks ranging from June 1999 - December 2000. (If a song's entry date was in 1999, but it remained on the list into 2000, it is still included.) 
+The data contains 317 songs that ranked in Billboard's Top 100 list in the year 2000. Each row includes song title, artist, duration, genre, the date it first entered the list, the date it reached its highest ranking, and then its ranking for 76 weeks ranging from June 1999 - December 2000. (If a song's entry date was in 1999, but it remained on the list into 2000, it is still included.)
 
 This is a very wide dataset, with one column for each of the 76 weeks containing a song's rank in that week. If the song wasn't in the top 100 that week, it gets 'NaN'.
 
@@ -270,7 +270,7 @@ for week in weeks:
     new_week = week.replace('th.week', '').replace('st.week', '').replace('nd.week', '').replace('rd.week','').replace('x','')
     int_week = int(new_week)
     new_weeks.append(int_week)
-    
+
 billboard['week'] = new_weeks
 billboard = billboard.sort_values(['track','week'])
 billboard.head()
@@ -406,7 +406,7 @@ plt.show()
 ```
 
 
-![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png)
+![png](teresaborcuch.github.io/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png)
 
 
 ### Which genre has the most tracks in the Top 100?
@@ -439,7 +439,7 @@ Given that Gospel, Jazz, and Reggae had only one track each in the top 100, we'l
 ```python
 # Make a dataframe of unique songs excluding Jazz, Gospel, and Reggae
 genres = ['Rock', 'Rap', 'R&B', 'Country]']
-top_tracks = unique_tracks[(unique_tracks['genre'] == 'Rock') | (unique_tracks['genre'] == 'Country') 
+top_tracks = unique_tracks[(unique_tracks['genre'] == 'Rock') | (unique_tracks['genre'] == 'Country')
                          | (unique_tracks['genre'] == 'Rap')|(unique_tracks['genre'] == 'R&B')
                           |(unique_tracks['genre'] == 'Pop')|(unique_tracks['genre'] == 'Latin')
                           |(unique_tracks['genre'] == 'Electronica')]
@@ -656,7 +656,7 @@ plt.show()
 ![png](Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_32_0.png)
 
 
-The vast majority of songs peak under 100 days into their time in the Top 100 list. 
+The vast majority of songs peak under 100 days into their time in the Top 100 list.
 
 
 ```python
@@ -745,11 +745,11 @@ It looks like January and December are the months with the most peak songs, but 
 
 
 ```python
-billboard_top_four = billboard[(billboard['genre'] == 'Rock') | (billboard['genre'] == 'Country') 
+billboard_top_four = billboard[(billboard['genre'] == 'Rock') | (billboard['genre'] == 'Country')
                          | (billboard['genre'] == 'Rap')|(billboard['genre'] == 'R&B')]
 week_rank = billboard_top_four.pivot_table(index = ['week'], values = 'ranking', columns = 'genre')
 # Graph ranking over time
-wk_rk_plot = week_rank.plot(figsize = (30,10), xticks = (range(0,70,5)), yticks = (range(0,100,10)), 
+wk_rk_plot = week_rank.plot(figsize = (30,10), xticks = (range(0,70,5)), yticks = (range(0,100,10)),
                             colormap = 'nipy_spectral', lw = 4)
 wk_rk_plot.legend(fontsize = 'xx-large')
 wk_rk_plot.set_ylabel('Average Rank of Songs', fontsize = 'xx-large')
@@ -855,4 +855,4 @@ peak_song.sort_values().head(20)
 
 
 
-We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. 
+We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking.
