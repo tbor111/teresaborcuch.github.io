@@ -152,21 +152,6 @@ unique_tracks = billboard[cols]
 unique_tracks = unique_tracks.sort_values(['track','ranking'])
 unique_tracks = unique_tracks.drop_duplicates('track')
 ```
-
-### How long do songs typically last in the Billboard Top 100?
-
-
-```python
-plt.hist(unique_tracks['weeks_in_top_hun'])
-plt.xlabel("Number of Weeks Spent in Top 100")
-plt.ylabel("Count of Songs")
-plt.show()
-```
-
-
-![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png?raw=true)
-
-
 ### Which genre has the most tracks in the Top 100?
 
 
@@ -202,6 +187,21 @@ top_tracks = unique_tracks[(unique_tracks['genre'] == 'Rock') | (unique_tracks['
                           |(unique_tracks['genre'] == 'Pop')|(unique_tracks['genre'] == 'Latin')
                           |(unique_tracks['genre'] == 'Electronica')]
 ```
+### How long do songs typically last in the Billboard Top 100?
+
+
+```python
+plt.hist(unique_tracks['weeks_in_top_hun'])
+plt.xlabel("Number of Weeks Spent in Top 100")
+plt.ylabel("Count of Songs")
+plt.show()
+```
+
+
+![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_15_0.png?raw=true)
+
+Although the average duration for a track to spend in the top 100 is 16 weeks, distribution is skewed right, with the the most songs lasting 20 weeks or fewer, and only a few lasting between 30 and 60 weeks.
+
 
 ### Which genre lasts the longest in the Billboard Top 100?
 
@@ -210,8 +210,6 @@ top_tracks = unique_tracks[(unique_tracks['genre'] == 'Rock') | (unique_tracks['
 genre_weeks_in_hun = top_tracks.pivot_table(index = ['genre'], values = ['weeks_in_top_hun'], aggfunc = np.mean)
 genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 ```
-
-
 
 
 |genre| weeks_in_top_hun|
@@ -223,7 +221,6 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 | Pop | 15.222222 |
 | Rap | 14.596491 |
 | R&B | 11.347826 |
-
 
 
 
@@ -248,7 +245,20 @@ print "Variance: ", np.var(top_tracks['weeks_in_top_hun'])
     Variance:  82.3766089273
 
 
-Although the average duration for a track to spend in the top 100 is 16 weeks, distribution is skewed right, with the the most songs lasting 20 weeks or fewer, and only a few lasting between 30 and 60 weeks.
+
+```python
+# Calculate whether R&B songs spend significant less time in the Top 100 list than the average song
+rb_dur = top_tracks[top_tracks['genre'] == "R&B"]
+rb_dur = rb_dur['weeks_in_top_hun']
+all_dur = top_tracks['weeks_in_top_hun']
+scipy.stats.ttest_ind(rb_dur, all_dur)
+```
+
+```python
+Ttest_indResult(statistic=-2.8326655515243053, pvalue=0.0048964589179420039)
+```
+
+R&B tracks spend an average of only 11.3 weeks in the Top 100, significantly less than the general song list (p < 0.005)
 
 ### Which tracks rank the highest?
 
@@ -307,10 +317,20 @@ top_tracks.pivot_table(index = ['genre'], values = ['ranking']).sort_values('ran
 | Rock | 36.072993 |
 | Latin | 31.444444 |
 
+```python
+# Evaluate whether the ranking of R&B tracks is significantly than the average
+rb_rank = top_tracks[top_tracks['genre']== "R&B"]
+rb_rank = list(rb_rank['ranking'])
+all_rank = list(top_tracks['ranking'])
+scipy.stats.ttest_ind(rb_rank,all_rank)
+```
+
+```python
+Ttest_indResult(statistic=2.4441792192740746, pvalue=0.01503493154493676)
+```
 
 
-
-The genre with the highest ranking tracks on average is R&B, while the lowest ranking genre is Latin.
+R&B tracks have a higher average ranking than the general track list (p < 0.05).
 
 ### How long do most tracks take to peak?
 
@@ -369,7 +389,17 @@ peak_genre.sort_values('days_til_peak')
 | Electronica | 61.250000 |
 | Latin | 64.555556 |
 
+```python
+rb_peak = top_tracks[top_tracks['genre']== "R&B"]
+rb_peak = list(rb_peak['days_til_peak'])
+all_peak = list(top_tracks['days_til_peak'])
+scipy.stats.ttest_ind(rb_peak,all_peak)
+```
+```python
+Ttest_indResult(statistic=-2.7614972407535179, pvalue=0.0060718476019232673)
+```
 
+R&B songs peak more quickly than other songs (p < 0.01), but we should keep in mind that R&B also had fewer weeks on average in the top 100 than other genres.
 
 ### Is there a seasonal aspect to when songs peak?
 
@@ -512,4 +542,4 @@ peak_song.sort_values().head(20)
 
 
 
-We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher, but burn out more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different patterns of songs in these two genres.
+We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher and peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
