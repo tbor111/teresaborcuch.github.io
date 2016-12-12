@@ -126,16 +126,17 @@ for week in weeks:
 billboard['week'] = new_weeks
 billboard = billboard.sort_values(['track','week'])
 billboard.head()
-
 ```
 
+
 |  | track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
-|------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------|
+|------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------| ---|
 | 47 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
 | 364 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 2  | 99.0 |
 | 681 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 3 | 96.0 |
 | 998 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
 | 1315 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
+
 
 ### Making a unique song dataframe
 
@@ -151,7 +152,9 @@ unique_tracks = billboard[cols]
 unique_tracks = unique_tracks.sort_values(['track','ranking'])
 unique_tracks = unique_tracks.drop_duplicates('track')
 ```
+
 ### Which genre has the most tracks in the Top 100?
+We'll count entries in the unique tracks dataframe.
 
 
 ```python
