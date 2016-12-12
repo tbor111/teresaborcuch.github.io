@@ -136,7 +136,7 @@ billboard.head()
 | 681 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 3 | 96.0 |
 | 998 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
 | 1315 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
-
+<div>
 
 ### Making a unique song dataframe
 
@@ -187,6 +187,7 @@ top_tracks = unique_tracks[(unique_tracks['genre'] == 'Rock') | (unique_tracks['
                           |(unique_tracks['genre'] == 'Pop')|(unique_tracks['genre'] == 'Latin')
                           |(unique_tracks['genre'] == 'Electronica')]
 ```
+
 ### How long do songs typically last in the Billboard Top 100?
 
 
