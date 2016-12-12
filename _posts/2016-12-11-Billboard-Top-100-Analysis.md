@@ -512,4 +512,4 @@ peak_song.sort_values().head(20)
 
 
 
-We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking.
+We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher, but burn out more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different patterns of songs in these two genres.
