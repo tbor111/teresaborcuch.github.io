@@ -154,7 +154,7 @@ unique_tracks = unique_tracks.drop_duplicates('track')
 ```
 
 ### Which genre has the most tracks in the Top 100?
-We'll count entries in the unique tracks dataframe.
+We'll count entries in the unique tracks dataframe.nn
 
 
 ```python
@@ -205,6 +205,26 @@ plt.show()
 
 Although the average duration for a track to spend in the top 100 is 16 weeks, distribution is skewed right, with the the most songs lasting 20 weeks or fewer, and only a few lasting between 30 and 60 weeks.
 
+```python
+# Descriptive stats for duration in top 100
+print "Maximum: ", max(top_tracks['weeks_in_top_hun'])
+print "Minumum: ", min(top_tracks['weeks_in_top_hun'])
+print "Mean: ", np.mean(top_tracks['weeks_in_top_hun'])
+print "Median: ", np.median(top_tracks['weeks_in_top_hun'])
+print "Mode: ", scipy.stats.mode(np.array(top_tracks['weeks_in_top_hun']))[0][0]
+print "Standard Deviation: ", np.std(top_tracks['weeks_in_top_hun'])
+print "Variance: ", np.var(top_tracks['weeks_in_top_hun'])
+```
+
+    Maximum:  57
+    Minumum:  1
+    Mean:  16.8115015974
+    Median:  19.0
+    Mode:  20
+    Standard Deviation:  9.07615606561
+    Variance:  82.3766089273
+
+
 
 ### Which genre lasts the longest in the Billboard Top 100?
 
@@ -225,27 +245,6 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 | Rap | 14.596491 |
 | R&B | 11.347826 |
 
-
-
-
-```python
-# Descriptive stats for duration in top 100
-print "Maximum: ", max(top_tracks['weeks_in_top_hun'])
-print "Minumum: ", min(top_tracks['weeks_in_top_hun'])
-print "Mean: ", np.mean(top_tracks['weeks_in_top_hun'])
-print "Median: ", np.median(top_tracks['weeks_in_top_hun'])
-print "Mode: ", scipy.stats.mode(np.array(top_tracks['weeks_in_top_hun']))[0][0]
-print "Standard Deviation: ", np.std(top_tracks['weeks_in_top_hun'])
-print "Variance: ", np.var(top_tracks['weeks_in_top_hun'])
-```
-
-    Maximum:  57
-    Minumum:  1
-    Mean:  16.8115015974
-    Median:  19.0
-    Mode:  20
-    Standard Deviation:  9.07615606561
-    Variance:  82.3766089273
 
 
 
