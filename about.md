@@ -4,11 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Studying Data Science at General Assembly!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm an animal behaviorist turned data scientist. This blog documents some of the projects and analyses I've worked on as part of my data science training at General Assembly.
 
 ### Contact me
 
