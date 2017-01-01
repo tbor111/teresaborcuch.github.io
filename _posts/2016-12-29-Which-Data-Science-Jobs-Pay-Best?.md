@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Recently, there's been some media hype about how data science is one of the [best fields](https://www.glassdoor.com/List/Best-Jobs-in-America-LST_KQ0,20.htm) to get into. However, because of the [diversity](https://www.datacamp.com/community/tutorials/data-science-industry-infographic#gs.JoXjfNU) of roles in the field, there can be quite a bit of variety in job titles, responsibilities, and qualifications. For people looking to break into data science (like me), there are many factors to consider when job-hunting, but salary is definitely a big one. For this analysis, I built a webscraper to collect data from data science jobs listed on [Indeed](www.indeed.com) in the Boston area. Then, I used a logistic regression model to determine which factors were good predictors of a high salary.
+Recently, data science has been receiving quite a bit of media attention for being one of the [best fields](https://www.glassdoor.com/List/Best-Jobs-in-America-LST_KQ0,20.htm) to get into. However, because of the [diversity](https://www.datacamp.com/community/tutorials/data-science-industry-infographic#gs.JoXjfNU) of roles in the field, there can be quite a bit of variety in job titles, responsibilities, and qualifications. For people looking to get hired as data scientists, there are many factors to consider when job-hunting, but salary is definitely a big one. For this analysis, I built a webscraper to collect data from data science jobs listed on [Indeed](www.indeed.com) in the Boston area. Then, I used a logistic regression model to determine which factors were good predictors of a high salary.
 
 ## Methods
 
@@ -221,6 +221,7 @@ jobs.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Unnamed: 0</th>
       <th>id</th>
       <th>Python</th>
       <th>over_90k</th>
@@ -236,6 +237,7 @@ jobs.head()
   <tbody>
     <tr>
       <th>0</th>
+      <td>0</td>
       <td>jl_f43cd8061406b3d7</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -249,6 +251,7 @@ jobs.head()
     </tr>
     <tr>
       <th>1</th>
+      <td>1</td>
       <td>jl_90603c7f1f0af480</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -262,6 +265,7 @@ jobs.head()
     </tr>
     <tr>
       <th>2</th>
+      <td>2</td>
       <td>jl_50022587c7a4a8d9</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -275,6 +279,7 @@ jobs.head()
     </tr>
     <tr>
       <th>3</th>
+      <td>3</td>
       <td>jl_44da2bd2b0b7e145</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -288,6 +293,7 @@ jobs.head()
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
       <td>jl_f5945f64ec7013e3</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -317,7 +323,7 @@ X = patsy.dmatrix('~C(years) + C(Python) + C(has_phd) + C(has_startup) + C(scien
 y = jobs.over_90k
 ```
 
-I'll use a cross-validated gridsearch to find the best values of C, the inverse of the regularization parameter lambda, and the penalty. A high C-value means the model uses little regularization and a low C means high regularization. Next, I'll fit the model
+I'll use a cross-validated gridsearch to find the best values of C, the inverse of the regularization parameter lambda, and the penalty. A high C-value means the model uses little regularization and a low C means high regularization. Next, I'll fit the model to the job data.
 
 
 ```python
@@ -334,6 +340,8 @@ gs.fit(X, y)
     Fitting 5 folds for each of 24 candidates, totalling 120 fits
 
 
+    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/sklearn/metrics/classification.py:1074: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no predicted samples.
+      'precision', 'predicted', average, warn_for)
     [Parallel(n_jobs=1)]: Done  49 tasks       | elapsed:    0.2s
     [Parallel(n_jobs=1)]: Done 120 out of 120 | elapsed:    0.4s finished
 
@@ -379,7 +387,7 @@ Now that I've fit the model, I'll make a confusion matrix to report the number o
 # Make confusion matrix
 conmat= metrics.confusion_matrix(y, predictions, labels=gs_logreg.classes_)
 conmat= pd.DataFrame(conmat, columns=['Predicted < 90k', 'Predicted > 90k'], index=['Listed < 90k', 'Listed > 90k'])
-printconmat
+print conmat
 ```
 
                   Predicted < 90k  Predicted > 90k
@@ -427,8 +435,12 @@ plt.show()
 print "Area under the curve: ", ROC_AUC
 ```
 
+    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+      warnings.warn('Matplotlib is building the font cache using fc-list. This may take a moment.')
 
-![png](../images/project4_blog_files/project4_blog_23_0.png)
+
+
+![png](../images/project4_blog_files/project4_blog_23_1.png)
 
 
     Area under the curve:  0.733668443974
@@ -584,6 +596,213 @@ Based on these values, jobs that contain "start-up" or "Python" in their descrip
 
 ### Reducing False Positives
 If I were to apply this model to my job search, I would run the risk of getting my hopes up that a given job paid over \$90,000 a year and then being disappointed when it actually paid less. This happened about 40% of the time on the test data (78 false positives out of 191 total predicted positives). I might decide that it's preferable to have the model that underestimates salary so that I could expect a lower amount, but then be pleasantly surprised when the actual salary was higher. To do this, I could tinker with the probability threshold the model used to determine whether it predicted over 90k. Here, I employed the default of 0.5, but to cut down the number of false positives, I could change it to 0.75. This would mean that the model would predict a salary of over $90,00 for a particular job only if was 75% sure.
+
+
+```python
+# Get predicted probability vectors of salary
+# The salary_50 column represents the class the model assigned to each job given a 50% probability threshold
+salary_pp = pd.DataFrame(gs_logreg.predict_proba(X), columns = ['under_90k', 'over_90k'])
+salary_pp['salary_50'] = y
+salary_pp.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>under_90k</th>
+      <th>over_90k</th>
+      <th>salary_50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.303005</td>
+      <td>0.696995</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.303005</td>
+      <td>0.696995</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.341080</td>
+      <td>0.658920</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.192229</td>
+      <td>0.807771</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.341080</td>
+      <td>0.658920</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# Add columns with the predicted salary class for thresholds of 60% - 100%
+import numpy as np
+for i in range(60,110,10):
+    thresh = np.float(i)/np.float(100)
+    thresh_list = [1.0 if x >= thresh else 0.0 for x in salary_pp.over_90k.values]
+    salary_pp['salary_{}'.format(str(i))] = thresh_list
+salary_pp.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>under_90k</th>
+      <th>over_90k</th>
+      <th>salary_50</th>
+      <th>salary_60</th>
+      <th>salary_70</th>
+      <th>salary_80</th>
+      <th>salary_90</th>
+      <th>salary_100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.303005</td>
+      <td>0.696995</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.303005</td>
+      <td>0.696995</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.341080</td>
+      <td>0.658920</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.192229</td>
+      <td>0.807771</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.341080</td>
+      <td>0.658920</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# Make confusion matrices for each new threshold
+thresh = [50,60,70,80,90]
+precision_list = [210.0/float(210+92)]
+accuracy_list = [429.0/627.0]
+recall_list = [210.0/float(210+106)]
+FP_list = [92]
+FN_list = [106]
+
+for i in range(3,7):
+    y_thresh = salary_pp.ix[:,i]
+    conmat= metrics.confusion_matrix(y, y_thresh.values, labels=gs_logreg.classes_)
+    FP = conmat[0][1]
+    TP = conmat[1][1]
+    TN = conmat[0][0]
+    FN = conmat[1][0]
+    FP_list.append(FP)
+    FN_list.append(FN)
+    accuracy = float(TP + TN)/627
+    accuracy_list.append(accuracy)
+    precision = float(TP)/float(TP + FP)
+    precision_list.append(precision)
+    recall = float(TP)/float(TP + FN)
+    recall_list.append(recall)
+
+# Plot the number of false positives for each threshold value
+plt.figure(figsize = [6,4])
+plt.plot(thresh, FP_list, 'ob-', label = "False Positives")
+plt.plot(thresh, FN_list, 'or-', label = "False Negatives")
+plt.xticks(thresh)
+plt.xlabel("Predicted Probabilty Threshold (%)")
+plt.ylabel("Number of Jobs")
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.show()
+
+# Plot the effects of changing the threshold on precision, accuracy, and recall of the model
+plt.figure(figsize = [6,4])  
+plt.plot(thresh,precision_list,'o-', label = "Precision")
+plt.plot(thresh,accuracy_list,'xr-', label = "Accuracy")
+plt.plot(thresh,recall_list, '.g-', label = "Recall")
+plt.xlabel("Predicted Probability Threshold (%)")
+plt.xticks(thresh)
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.show()
+```
+
+
+![png](../images/project4_blog_files/project4_blog_36_0.png)
+
+
+
+![png](../images/project4_blog_files/project4_blog_36_1.png)
+
+
+As the threshold for each job to be classified as earning over 90k increases, the number of false positives decreases. However, this comes at the cost of increasing false negatives, as the model becomes more conservative and likely to underestimate salary. Increasing threshold also decreases accuracy and recall of the model. As a job-seeker, I may prefer a more conservative model, but it's important to recognize these tradeoffs.
 
 ## Conclusions
 From this analysis, I've learned that if a particular job uses the terms "start-up" or "Python" in its description, it's more likely to pay over $90,000 than if it doesn't. However, I have to be cautious about concluding that start-ups necessarily pay more. Since the webscraper only returned jobs for which each keyword was mentioned, I don't know the context. A job description explicitly stating that the company is "past its start-up days" would be considered in the same category as a company describing itself as "a small 5-person start-up".
