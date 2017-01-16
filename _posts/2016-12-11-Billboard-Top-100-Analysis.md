@@ -1,7 +1,11 @@
+---
+layout: post
+title: What Makes a Top 100 Billboard Hit?
+---
 
 ## Problem Statement
 
-The Billboard Top 100 is a list of the most popular songs based on sales and airplay time. Given a dataset of the Billboard Top 100 list for the year 2000, I propose that the popularity of a given track or genre can be assessed by measuring how high it ranks during its time on the list, how fast it reaches its peak, and how many weeks it stays in the top 100. Certain tracks or genres may peak quickly, but have little staying power on the list, while others may not rank significantly higher than average, but have a long tenure in the top 100. It may also be worthwhile to look for seasonal trends in when songs hit their peak. Identifying which genres fall into which of these categories will provide insight into the tastes of music listeners in the year 2000.
+The Billboard Top 100 is a list of the most popular songs based on sales and airplay time. Given a dataset of the Billboard Top 100 list for the year 2000, I propose that the popularity of a given track or genre can be assessed by measuring how high it ranks during its time on the list, how fast it reaches its peak, and how many weeks it stays in the top 100. Certain tracks or genres may peak quickly, but have little staying power on the list, while others may not rank significantly higher than average, but have a long tenure in the top 100. It may also be worthwhile to look for seasonal trends in when songs hit their peak. Identifying which genres fall into which of these categories will provide insight into the tastes of music listeners back in 2000.
 
 ## Preview of Initial Dataset
 

@@ -1,5 +1,9 @@
+---
+layout: post
+title: Katharine Hepburn and IMDb Movie Ratings
+---
 
-# Summary
+## Summary
 
 This analysis will use tree models to investigate which factors lead to movies earning high ratings on IMDb. The dataset contains 860 movies, web-scraped from the [New York Times list of 1000 best movies](http://www.nytimes.com/ref/movies/1000best.html). I then queried from the [Open Movie Database](http://omdbapi.com/)  for details such as directors, actors, release year, genre, runtime, a brief plot synopsis, and IMDb rating. I used sklearn's CountVectorizer to extract the most common bigrams from plot summaries, genre descriptions, and director and actor lists, and selected relevant features for a decision tree using recursive feature elimination.
 

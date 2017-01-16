@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You're up and running!
+title: Hello World
 ---
 
 **This is my first blog post!**

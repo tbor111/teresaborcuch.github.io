@@ -8,4 +8,4 @@ I'm an animal behaviorist turned data scientist. This blog documents some of the
 
 ### Contact me
 
-[tborcuch@gmail.com](mailto:email@domain.com)
+[tborcuch@gmail.com](mailto:tborcuch@gmail.com)
