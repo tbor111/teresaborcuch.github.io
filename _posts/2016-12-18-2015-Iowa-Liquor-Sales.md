@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Dallas County, Iowa: A Promising Place to Build a Liquor Store
+title: "Dallas County, Iowa: A Promising Place to Build a Liquor Store"
 ---
 
 ## Problem Statement
