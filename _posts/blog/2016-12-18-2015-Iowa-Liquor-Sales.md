@@ -3,7 +3,7 @@ layout: post
 title: Iowa Liquor Sales
 ---
 
-## Problem Statement
+## Where to Open a New Liquor Store According to Linear Regression
 
 A liquor store owner is looking to open a new store in the state of Iowa. Given records of Iowa's liquors sales from 2015, I will assess different locations around the state for market potential. The records include number of bottles sold, product details, pricing for transactions at 1,161 stores, as well as store location. From this data, I can investigate the relationship between store location and total volume of sales to advise the store owner which counties are promising locations to build the next store.
 
