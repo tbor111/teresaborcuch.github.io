@@ -21,91 +21,90 @@ import scipy
 import matplotlib.pyplot as plt
 import datetime
 # Read in billboard.csv as a data frame
-billboard = pd.read_csv("/Users/teresaborcuch/DSI-course-materials/curriculum/04-lessons/week-02/2.4-lab/assets/datasets/billboard.csv")
+billboard = pd.read_csv("../assets/datasets/billboard.csv")
 billboard.head(2)
-
-
 ```
 
 <div>
-<table border = "1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>artist.inverted</th>
-      <th>track</th>
-      <th>time</th>
-      <th>genre</th>
-      <th>date.entered</th>
-      <th>date.peaked/th>
-      <th>x1st.week</th>
-      <th>x2nd.week</th>
-      <th>x3rd.week</th>
-      <th>...</th>
-      <th>x67th.week</th>
-      <th>x68th.week</th>
-      <th>x69th.week</th>
-      <th>x70th.week</th>
-      <th>x71st.week</th>
-      <th>x72nd.week</th>
-      <th>x73rd.week</th>
-      <th>x74th.week</th>
-      <th>x75th.week</th>
-      <th>x76th.week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000</td>
-      <td>Destiny's Child</td>
-      <td>Independent Woman Part I</td>
-      <td>3:38</td>
-      <td>Rock</td>
-      <td>2000-09-23</td>
-      <td>2000-11-18</td>
-      <td>78</td>
-      <td>63.0/td>
-      <td>49.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2000</td>
-      <td>Santana</td>
-      <td>Maria, Maria</td>
-      <td>4:18</td>
-      <td>Rock</td>
-      <td>2000-02-12</td>
-      <td>2000-04-08</td>
-      <td>15</td>
-      <td>8.0</td>
-      <td>6.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
+  <table border = "1" class="dataframe">
+    <thead>
+      <tr style="text-align: right;">
+        <th></th>
+        <th>year</th>
+        <th>artist.inverted</th>
+        <th>track</th>
+        <th>time</th>
+        <th>genre</th>
+        <th>date.entered</th>
+        <th>date.peaked</th>
+        <th>x1st.week</th>
+        <th>x2nd.week</th>
+        <th>x3rd.week</th>
+        <th>...</th>
+        <th>x67th.week</th>
+        <th>x68th.week</th>
+        <th>x69th.week</th>
+        <th>x70th.week</th>
+        <th>x71st.week</th>
+        <th>x72nd.week</th>
+        <th>x73rd.week</th>
+        <th>x74th.week</th>
+        <th>x75th.week</th>
+        <th>x76th.week</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>0</th>
+        <td>2000</td>
+        <td>Destiny's Child</td>
+        <td>Independent Woman Part I</td>
+        <td>3:38</td>
+        <td>Rock</td>
+        <td>2000-09-23</td>
+        <td>2000-11-18</td>
+        <td>78</td>
+        <td>63.0</td>
+        <td>49.0</td>
+        <td>...</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td>2000</td>
+        <td>Santana</td>
+        <td>Maria, Maria</td>
+        <td>4:18</td>
+        <td>Rock</td>
+        <td>2000-02-12</td>
+        <td>2000-04-08</td>
+        <td>15</td>
+        <td>8.0</td>
+        <td>6.0</td>
+        <td>...</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+        <td>NaN</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 
 
 ## Plan of Attack:
@@ -131,6 +130,7 @@ billboard.head(2)
     * Generate a pivot table of the total number of tracks peaking per month to look for seasonal trends
     * Plot average rank of each genre across the weeks to look for trends in when songs peak
     * Calculate descriptive stats on weeks until peak
+
 
 ### Cleaning and reformatting
 
@@ -324,7 +324,7 @@ unique_tracks = unique_tracks.drop_duplicates('track')
 ```
 
 ### Which genre has the most tracks in the Top 100?
-We'll count entries in the unique tracks dataframe.nn
+We'll count entries in the unique tracks dataframe.
 
 
 ```python
