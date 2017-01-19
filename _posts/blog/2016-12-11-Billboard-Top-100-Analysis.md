@@ -714,7 +714,7 @@ plt.show()
 ![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_39_0.png?raw=true)
 
 
-This plot lists the average ranking of all songs in the top four most represented genres over 76 weeks. From this, we can see that the genres that ranked the highest did not necessarily have the longest time on the list. All four genres have a characteristic 'U-shape' to their ranking in the first 20 weeks. However, R&B tracks seem to fall off the chart after their peak, while the other three genres stay in the top 100 for longer, but achieve lower weekly rankings. This may explain why R&B tracks have the highest average ranking: they don't stay on the chart long enough to see mediocrity.
+This plot lists the average ranking of all songs in the top four most represented genres over 76 weeks. From this, I can see that the genres that ranked the highest did not necessarily have the longest time on the list. All four genres have a characteristic 'U-shape' to their ranking in the first 20 weeks. However, R&B tracks seem to fall off the chart after their peak, while the other three genres stay in the top 100 for longer, but achieve lower weekly rankings. This may explain why R&B tracks have the highest average ranking: they don't stay on the chart long enough to see mediocrity.
 
 ## Conclusions
 
@@ -808,4 +808,4 @@ peak_song.sort_values().head(20)
 
 
 
-We can conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher and peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
+I conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher and peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
