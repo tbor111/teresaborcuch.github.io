@@ -27,8 +27,6 @@ from sklearn.pipeline import make_pipeline
 from sklearn.ensemble import RandomForestRegressor, BaggingRegressor, AdaBoostRegressor, GradientBoostingRegressor
 ```
 
-    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
-      warnings.warn('Matplotlib is building the font cache using fc-list. This may take a moment.')
 
 
 # Data Selection and Cleaning
@@ -36,8 +34,8 @@ Originally, I considered utilizing [IMDb's top 250 movies](http://www.imdb.com/c
 
 
 ```python
-movies = pd.read_csv('/Users/teresaborcuch/Desktop/movies.csv')
-del movies['Unnamed: 0']
+movies = pd.read_csv('../movies.csv')
+
 ```
 
 

@@ -3,7 +3,7 @@ layout: post
 title: Iowa Liquor Sales
 ---
 
-## Where to Open a New Liquor Store According to Linear Regression
+# Where to Open a New Liquor Store According to Linear Regression
 
 A liquor store owner is looking to open a new store in the state of Iowa. Given records of Iowa's liquors sales from 2015, I will assess different locations around the state for market potential. The records include number of bottles sold, product details, pricing for transactions at 1,161 stores, as well as store location. From this data, I can investigate the relationship between store location and total volume of sales to advise the store owner which counties are promising locations to build the next store.
 
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (8, 8)
 
 ## Load the data into a DataFrame and preview
-transactions = pd.read_csv('/Users/teresaborcuch/DSI-course-materials/curriculum/04-lessons/week-03/2.4-lab/Iowa_Liquor_sales_sample_10pct.csv')
+transactions = pd.read_csv('../Iowa_Liquor_sales_sample_10pct.csv')
 transactions.head()
 ```
 
