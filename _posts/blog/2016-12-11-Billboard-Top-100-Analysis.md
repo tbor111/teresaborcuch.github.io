@@ -554,19 +554,19 @@ top_tracks.pivot_table(index = ['genre'], values = ['ranking']).sort_values('ran
 
 
 ```python
-# Evaluate whether the ranking of R&B tracks is significantly than the average
-rb_rank = top_tracks[top_tracks['genre']== "R&B"]
-rb_rank = list(rb_rank['ranking'])
+# Evaluate whether the ranking of Latin tracks is significantly lower than the average
+latin_rank = top_tracks[top_tracks['genre']== "Latin"]
+latin_rank = list(latin_rank['ranking'])
 all_rank = list(top_tracks['ranking'])
-scipy.stats.ttest_ind(rb_rank,all_rank)
+scipy.stats.ttest_ind(latin_rank,all_rank)
 ```
 
 ```python
-Ttest_indResult(statistic=2.4441792192740746, pvalue=0.01503493154493676)
+Ttest_indResult(statistic=-1.2766236595179274, pvalue=0.20266080205708292)
 ```
 
 
-R&B tracks have a higher average ranking than the general track list (p < 0.05).
+Latin tracks do not have a lower average ranking than the general track list (p = 0.20).
 
 ### How long do most tracks take to peak?
 
@@ -711,10 +711,10 @@ plt.show()
 ```
 
 
-![png](https://github.com/teresaborcuch/teresaborcuch.github.io/blob/master/images/Project2_Billboard_Analysis_files/Project2_Billboard_Analysis_39_0.png?raw=true)
+![png]("/Users/teresaborcuch/github.io/images/Project2_Billboard_Analysis_files/Project2_rank_weeks_updated.png")
 
 
-This plot lists the average ranking of all songs in the top four most represented genres over 76 weeks. From this, I can see that the genres that ranked the highest did not necessarily have the longest time on the list. All four genres have a characteristic 'U-shape' to their ranking in the first 20 weeks. However, R&B tracks seem to fall off the chart after their peak, while the other three genres stay in the top 100 for longer, but achieve lower weekly rankings. This may explain why R&B tracks have the highest average ranking: they don't stay on the chart long enough to see mediocrity.
+This plot displays the average ranking of all songs in the top four most represented genres over 76 weeks. Note that the y-axis here ranges from 100 to 1, representing rank, where 1 is the top rank and 100 is the lowest. From this plot, I can see that the genres that achieved the highest rank (Country, Rap, and Rock) also spent the longest time on the chart. Of the four, R&B lasted the shortest time on the chart and achieved the lowest peak rank. Its trajectory is shorter and smaller than the others'.
 
 ## Conclusions
 
@@ -801,11 +801,13 @@ peak_song.sort_values().head(20)
 
 ### Most Popular Genres (for those with n > 1)
 * Most Songs in Top 100: Rock
+* Highest Average Ranking: Rock
 * Longest Average Time in Top 100: Latin
-* Highest Average Ranking: R&B
 * Shortest Time Til Peak: R&B
 
 
 
 
-I conclude that there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs and the longest average duration on the list, R&B songs tend to rank higher and peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
+I conclude that genres tend to follow a similar arc in popularity over their duration in the Top 100 list. Rock, Country, and Rap tracks lasted the longest, and
+
+there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs, Latin songs last the longest on the list, and R&B songs tend to peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
