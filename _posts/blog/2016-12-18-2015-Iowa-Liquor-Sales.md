@@ -781,7 +781,7 @@ print "R_squared: ", sklearn.metrics.r2_score(y, pred_y)
 The total number of bottles is a good predictor of total sales.
 
 ### Cross-validated Lasso Regression
-Now, I'll include the county of each store as a catagorical variable, as well as the price per bottle at each store. I'll use 3-fold cross-validation to increase predictive power.
+Now, I'll include the county of each store as a categorical variable, as well as the price per bottle at each store. I'll use 3-fold cross-validation to reduce the risk of overfitting.
 
 
 ```python
@@ -976,9 +976,6 @@ plt.show()
 print "R-squared: ", dallas_model.score(X,y)
 ```
 
-    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py:3: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
-      app.launch_new_instance()
-    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py:4: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
 
 
 
@@ -1013,9 +1010,6 @@ print "R-squared: ", model.score(X,y)
 print model.coef_
 ```
 
-    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py:3: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
-      app.launch_new_instance()
-    /Users/teresaborcuch/anaconda2/lib/python2.7/site-packages/ipykernel/__main__.py:4: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
 
 
 
