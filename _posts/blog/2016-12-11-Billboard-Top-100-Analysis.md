@@ -726,7 +726,7 @@ plt.show()
 ```
 
 
-![png](/Users/teresaborcuch/teresaborcuch.github.io/images/Project2_Billboard_Analysis_files/Project2_rank_weeks_updated.png)
+![png](../images/Project2_Billboard_Analysis_files/Project2_rank_weeks_updated.png)
 
 
 This plot displays the average ranking of all songs in the top four most represented genres over 76 weeks. Note that the y-axis here ranges from 100 to 1, representing rank, where 1 is the top rank and 100 is the lowest. From this plot, I can see that the genres that achieved the highest rank (Country, Rap, and Rock) also spent the longest time on the chart. Of the four, R&B lasted the shortest time on the chart and achieved the lowest peak rank. Its trajectory is shorter and smaller than the others'.
