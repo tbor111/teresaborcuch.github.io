@@ -324,7 +324,7 @@ unique_tracks = unique_tracks.drop_duplicates('track')
 ```
 
 ### Which genre has the most tracks in the Top 100?
-We'll count entries in the unique tracks dataframe.
+I'll count entries in the unique tracks dataframe.
 
 
 ```python
