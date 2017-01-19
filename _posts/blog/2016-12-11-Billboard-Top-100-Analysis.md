@@ -3,7 +3,7 @@ layout: post
 title: Billboard Top 100 Analysis
 ---
 
-## Identifying Factors in a Song's Success
+# Identifying Factors in a Song's Success
 
 The Billboard Top 100 is a list of the most popular songs based on sales and airplay time. Given a dataset of the Billboard Top 100 list for the year 2000, I propose that the popularity of a given track or genre can be assessed by measuring how high it ranks during its time on the list, how fast it reaches its peak, and how many weeks it stays in the top 100. Certain tracks or genres may peak quickly, but have little staying power on the list, while others may not rank significantly higher than average, but have a long tenure in the top 100. It may also be worthwhile to look for seasonal trends in when songs hit their peak. Identifying which genres fall into which of these categories will provide insight into the tastes of music listeners in the year 2000.
 
@@ -22,18 +22,90 @@ import matplotlib.pyplot as plt
 import datetime
 # Read in billboard.csv as a data frame
 billboard = pd.read_csv("/Users/teresaborcuch/DSI-course-materials/curriculum/04-lessons/week-02/2.4-lab/assets/datasets/billboard.csv")
-billboard.head()
+billboard.head(2)
 
 
 ```
 
-| year | artist.inverted | track | time | genre | date.entered | date.peaked | x1st.week | x2nd.week | x3rd.week | ... | x67th.week | x68th.week | x69th.week | x70th.week | x71st.week | x72nd.week | x73rd.week | x74th.week | x75th.week | x76th.week |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | 2000 | Destiny's Child | Independent Women Part I | 3:38 | Rock | 2000-09-23 | 2000-11-18 | 78 | 63.0 | 49.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 1 | 2000 | Santana | Maria, Maria | 4:18 | Rock | 2000-02-12 | 2000-04-08 | 15 | 8.0 | 6.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 2 | 2000 | Savage Garden | I Knew I Loved You | 4:07 | Rock | 1999-10-23 | 2000-01-29 | 71 | 48.0 | 43.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 3 | 2000 | Madonna | Music | 3:45 | Rock | 2000-08-12 | 2000-09-16 | 41 | 23.0 | 18.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
-| 4 | 2000 | Aguilera, Christina | Come On Over Baby (All I Want Is You) | 3:38 | Rock | 2000-08-05 | 2000-10-14 | 57 | 47.0 | 45.0 | ... | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+<div>
+<table border = "1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>artist.inverted</th>
+      <th>track</th>
+      <th>time</th>
+      <th>genre</th>
+      <th>date.entered</th>
+      <th>date.peaked/th>
+      <th>x1st.week</th>
+      <th>x2nd.week</th>
+      <th>x3rd.week</th>
+      <th>...</th>
+      <th>x67th.week</th>
+      <th>x68th.week</th>
+      <th>x69th.week</th>
+      <th>x70th.week</th>
+      <th>x71st.week</th>
+      <th>x72nd.week</th>
+      <th>x73rd.week</th>
+      <th>x74th.week</th>
+      <th>x75th.week</th>
+      <th>x76th.week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>Destiny's Child</td>
+      <td>Independent Woman Part I</td>
+      <td>3:38</td>
+      <td>Rock</td>
+      <td>2000-09-23</td>
+      <td>2000-11-18</td>
+      <td>78</td>
+      <td>63.0/td>
+      <td>49.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000</td>
+      <td>Santana</td>
+      <td>Maria, Maria</td>
+      <td>4:18</td>
+      <td>Rock</td>
+      <td>2000-02-12</td>
+      <td>2000-04-08</td>
+      <td>15</td>
+      <td>8.0</td>
+      <td>6.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 ## Plan of Attack:
@@ -133,13 +205,107 @@ billboard.head()
 ```
 
 
-|  | track | artist | year | time | genre | date.entered | date.peaked | month.peaked | weeks_in_top_hun | days_til_peak | week | ranking |
-|------|--------|------|------|-------|--------------|-------------|--------------|------------------|---------------|------|---------| ---|
-| 47 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 1 | 100.0 |
-| 364 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 2  | 99.0 |
-| 681 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 3 | 96.0 |
-| 998 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 4 | 76.0 |
-| 1315 | Hot Sh*t Country Grammar | Nelly | 2000 | 4:17 | Rap | 2000-04-29 | 2000-09-16 | 09 | 34 | 140.0 | 5 | 55.0 |
+<div>
+<table border ="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track</th>
+      <th>artist</th>
+      <th>year</th>
+      <th>time</th>
+      <th>genre</th>
+      <th>date.entered</th>
+      <th>date.peaked</th>
+      <th>month.peaked</th>
+      <th>weeks_in_top_hun</th>
+      <th>days_til_peak</th>
+      <th>week</th>
+      <th>ranking</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>47</th>
+      <td>Hot Sh*t Country Grammar</td>
+      <td>Nelly</td>
+      <td>2000</td>
+      <td>4:17</td>
+      <td>Rap</td>
+      <td>2000-04-29</td>
+      <td>2000-09-16</td>
+      <td>09</td>
+      <td>34</td>
+      <td>140.0</td>
+      <td>1</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>364</th>
+      <td>Hot Sh*t Country Grammar</td>
+      <td>Nelly</td>
+      <td>2000</td>
+      <td>4:17</td>
+      <td>Rap</td>
+      <td>2000-04-29</td>
+      <td>2000-09-16</td>
+      <td>09</td>
+      <td>34</td>
+      <td>140.0</td>
+      <td>2</td>
+      <td>99.0</td>
+    </tr>
+    <tr>
+      <th>681</th>
+      <td>Hot Sh*t Country Grammar</td>
+      <td>Nelly</td>
+      <td>2000</td>
+      <td>4:17</td>
+      <td>Rap</td>
+      <td>2000-04-29</td>
+      <td>2000-09-16</td>
+      <td>09</td>
+      <td>34</td>
+      <td>140.0</td>
+      <td>3</td>
+      <td>96.0</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>Hot Sh*t Country Grammar</td>
+      <td>Nelly</td>
+      <td>2000</td>
+      <td>4:17</td>
+      <td>Rap</td>
+      <td>2000-04-29</td>
+      <td>2000-09-16</td>
+      <td>09</td>
+      <td>34</td>
+      <td>140.0</td>
+      <td>4</td>
+      <td>76.0</td>
+    </tr>
+    <tr>
+      <th>1315</th>
+      <td>Hot Sh*t Country Grammar</td>
+      <td>Nelly</td>
+      <td>2000</td>
+      <td>4:17</td>
+      <td>Rap</td>
+      <td>2000-04-29</td>
+      <td>2000-09-16</td>
+      <td>09</td>
+      <td>34</td>
+      <td>140.0</td>
+      <td>5</td>
+      <td>55.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 
 
 ### Making a unique song dataframe
@@ -239,15 +405,47 @@ genre_weeks_in_hun.sort_values('weeks_in_top_hun', ascending = False)
 ```
 
 
-|genre| weeks_in_top_hun|
-| --- | --- |
-| Latin | 19.222222 |
-| Rock | 18.883212 |
-| Electronica | 18.000000 |
-| Country | 16.216216 |
-| Pop | 15.222222 |
-| Rap | 14.596491 |
-| R&B | 11.347826 |
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>genre</th>
+      <th>weeks_in_top_hun</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Latin</td>
+      <td>19.222222</td>
+    </tr>
+    <tr>
+      <td>Rock</td>
+      <td>18.883212</td>
+    </tr>
+    <tr>
+      <td>Electronica</td>
+      <td>18.000000</td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td>16.216216</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>15.222222</td>
+    </tr>
+    <tr>
+      <td>Rap</td>
+      <td>14.596491</td>
+    </tr>
+    <tr>
+      <td>R&B</td>
+      <td>11.347826 </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 
@@ -313,15 +511,47 @@ top_tracks.pivot_table(index = ['genre'], values = ['ranking']).sort_values('ran
 
 
 
-|ranking | genre |
-| --- | --- |
-| R&B | 59.304348 |
-| Rap | 51.614035 |
-| Country | 49.554054 |
-| Electronica | 49.250000 |
-| Pop | 42.111111 |
-| Rock | 36.072993 |
-| Latin | 31.444444 |
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ranking</th>
+      <th>genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>R&B</td>
+      <td>59.304348</td>
+    </tr>
+    <tr>
+      <td>Rap</td>
+      <td>51.614035</td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td>49.554054</td>
+    </tr>
+    <tr>
+      <td>Electronica</td>
+      <td>49.250000</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>42.111111</td>
+    </tr>
+    <tr>
+      <td>Rock</td>
+      <td>36.072993</td>
+    </tr>
+    <tr>
+      <td>Latin</td>
+      <td>31.444444 </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 ```python
 # Evaluate whether the ranking of R&B tracks is significantly than the average
@@ -381,19 +611,49 @@ peak_genre = top_tracks.pivot_table(index = ['genre'], values = ['days_til_peak'
 peak_genre.sort_values('days_til_peak')
 ```
 
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>genre</th>
+      <th>days-til-peak</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>R&B</td>
+      <td>28.608696</td>
+    </tr>
+    <tr>
+      <td>Rap</td>
+      <td>42.000000</td>
+    </tr>
+    <tr>
+      <td>Pop</td>
+      <td>47.444444</td>
+    </tr>
+    <tr>
+      <td>Rock</td>
+      <td>57.072993</td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td>58.364865</td>
+    </tr>
+    <tr>
+      <td>Electronica</td>
+      <td>61.250000</td>
+    </tr>
+    <tr>
+      <td>Latin</td>
+      <td>64.555556</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
-
-|days_til_peak | genre |
-| --- | --- |
-| R&B | 28.608696 |
-| Rap | 42.000000 |
-| Pop | 47.444444 |
-| Rock | 57.072993 |
-| Country | 58.364865 |
-| Electronica | 61.250000 |
-| Latin | 64.555556 |
 
 ```python
 rb_peak = top_tracks[top_tracks['genre']== "R&B"]
