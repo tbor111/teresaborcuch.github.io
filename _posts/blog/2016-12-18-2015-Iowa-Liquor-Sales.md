@@ -3,9 +3,9 @@ layout: post
 title: Iowa Liquor Sales
 ---
 
-# Where to Open a New Liquor Store According to Linear Regression
+# Predicting Profits with Linear Regression
 
-A liquor store owner is looking to open a new store in the state of Iowa. Given records of Iowa's liquors sales from 2015, I will assess different locations around the state for market potential. The records include number of bottles sold, product details, pricing for transactions at 1,161 stores, as well as store location. From this data, I can investigate the relationship between store location and total volume of sales to advise the store owner which counties are promising locations to build the next store.
+Suppose a liquor store owner is looking to open a new store in the state of Iowa. Given records of Iowa's liquors sales from 2015, I will assess different locations around the state for market potential. The records include number of bottles sold, product details, pricing for transactions at 1,161 stores, as well as store location (city and county). From this data, I can investigate the relationship between store location and total volume of sales to advise the store owner which area are promising locations to build the next store.
 
 I hypothesize that the best location to build a store will be counties with few stores, but high sales, as this indicates a large demand but low competition.
 
@@ -18,7 +18,6 @@ from scipy import stats
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-plt.rcParams['figure.figsize'] = (8, 8)
 
 ## Load the data into a DataFrame and preview
 transactions = pd.read_csv('../Iowa_Liquor_sales_sample_10pct.csv')
@@ -440,6 +439,8 @@ Given the extreme right skew for both total sales and number of bottles, I will 
 # Remove two most extreme outliers from Polk County
 sales = sales[sales['total_bottles'] < 30000]
 ```
+
+I'll make a pivot table see which counties have the highest sales overall, and then plot by store to see if there are a few very valuable stores contributing to the total, or if all stores seem to be high value.
 
 
 ```python
