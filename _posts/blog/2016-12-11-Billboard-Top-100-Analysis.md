@@ -554,7 +554,7 @@ top_tracks.pivot_table(index = ['genre'], values = ['ranking']).sort_values('ran
 
 
 ```python
-# Evaluate whether the ranking of Latin tracks is significantly lower than the average
+# Evaluate whether the ranking of Latin tracks is significantly higher than the average
 latin_rank = top_tracks[top_tracks['genre']== "Latin"]
 latin_rank = list(latin_rank['ranking'])
 all_rank = list(top_tracks['ranking'])
@@ -566,7 +566,22 @@ Ttest_indResult(statistic=-1.2766236595179274, pvalue=0.20266080205708292)
 ```
 
 
-Latin tracks do not have a lower average ranking than the general track list (p = 0.20).
+Latin tracks do not have a higher average ranking than the general track list (p = 0.20).
+
+```python
+# Evaluate whether Rock tracks rank significantly higher than average
+rock_rank = top_tracks[top_tracks['genre']== "Rpcl"]
+rock_rank = list(rock_rank['ranking'])
+all_rank = list(top_tracks['ranking'])
+scipy.stats.ttest_ind(rock_rank,all_rank)
+```
+
+```python
+Ttest_indResult(statistic=-2.6119170406201984, pvalue=0.0093059561476599648)
+```
+
+
+Rock tracks do rank higher on average (p < 0.05).
 
 ### How long do most tracks take to peak?
 
@@ -808,6 +823,4 @@ peak_song.sort_values().head(20)
 
 
 
-I conclude that genres tend to follow a similar arc in popularity over their duration in the Top 100 list. Rock, Country, and Rap tracks lasted the longest, and
-
-there are several ways to assess popularity of songs on the Billboard Top 100 list, and that no one genre dominates in longevity, number of songs on the list, or average ranking. Although Rock has the most songs, Latin songs last the longest on the list, and R&B songs tend to peak more quickly. Demographic info on the average listener to either of these genres may contribute more insight into the different ranking patterns of songs in these two genres.
+I conclude that total number of songs on the chart, average duration on the chart, and high average song rankings are good indicators of success on the Billboard Top 100 Chart. Although I considered time until peak, it seems that there are no genres in which songs peak more quickly and rise higher. A shorter peak time indicates that songs in that genre simply did not rise as high in the rankings. Although Rock seems to dominate in most of these metrics, Latin songs do last the longest on the list. Since listener demographics were not considered in this analysis, the fact that Latin scored as well as it did in several categories may be remarkable, as I suspect that there are more listeners who prefer Rock than Latin in the general population. It is likely easier for a Rock song to gain popularity and high rankings than a Latin song, as there are probably more listeners to Rock in general, but a Latin song that earns national attention may be a higher quality song overall.
