@@ -7,36 +7,10 @@ title: Katharine Hepburn and IMDb
 This analysis will use tree models to investigate which factors lead to movies earning high ratings on IMDb. The dataset contains 860 movies, web-scraped from the [New York Times list of 1000 best movies](http://www.nytimes.com/ref/movies/1000best.html). I then queried from the [Open Movie Database](http://omdbapi.com/)  for details such as directors, actors, release year, genre, runtime, a brief plot synopsis, and IMDb rating. I used sklearn's CountVectorizer to extract the most common bigrams from plot summaries, genre descriptions, and director and actor lists, and selected relevant features for a decision tree using recursive feature elimination.
 
 
-```python
-# Imports at the top
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-from sklearn.feature_extraction.text import CountVectorizer
-import nltk
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-from sklearn.grid_search import GridSearchCV
-from sklearn.cross_validation import KFold, train_test_split, cross_val_score
-from sklearn.feature_selection import RFECV, SelectKBest, f_regression
-from sklearn import metrics
-from sklearn.tree import DecisionTreeRegressor
-from sklearn import preprocessing
-from sklearn.pipeline import make_pipeline
-from sklearn.ensemble import RandomForestRegressor, BaggingRegressor, AdaBoostRegressor, GradientBoostingRegressor
-```
-
-
-
 # Data Selection and Cleaning
 Originally, I considered utilizing [IMDb's top 250 movies](http://www.imdb.com/chart/top) for analysis, but realized that 250 titles wasn't quite enough, and that these were all relatively high-ranking titles anyways. In order to broaden the range of ratings I could train a model on, I needed more titles, and a wider range of stars. I found the NYT list, and scraped the titles using the Beautiful Soup library. I then got all movie details from the OMDB API, and created a Pandas DataFrame. The awards, actors, directors, and genres columns are lists within each cell, making it difficult to extract features. So far, the only thing I did was to create a 'won_Oscar' column containing a 1 if the awards column contained the phrase "won -- Oscar" and a 0 if it didn't, and drop any titles without an IMDb rating (leaving 860 titles to work with). Everything else is in its original format and will require some cleaning. (Here imported from csv.)
 
 
-```python
-movies = pd.read_csv('../movies.csv')
-
-```
 
 
 ```python

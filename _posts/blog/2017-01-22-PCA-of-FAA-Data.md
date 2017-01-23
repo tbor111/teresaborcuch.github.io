@@ -4,11 +4,12 @@ title: Principal Component Analysis of FAA Flight Delays
 ---
 # Using Data to Reduce Delays
 
-Given operational data for 74 airports over a 10 year period, I conducted a principal component analysis to examine underlying factors impacting flight delays. The data contains durations of gate, taxiing, and total delays for both arrivals and departures, volume of arrivals, departures, cancellations, and diversions, as well as the percent of flights that were delayed arriving or departing.
+Given operational data for 74 airports over a 10 year period, I conducted a principal component analysis to examine underlying factors impacting flight delays. The data contains durations of gate, taxiing, and total delays for both arrivals and departures, volume of arrivals, departures, cancellations, and diversions, as well as the percent of flights that were delayed arriving or departing. PCA revealed three components that roughly correspond to overall delays and flight volume, gate and arrival delays, and airborne and taxi delays. It appears that gate delays are the most related to overall departure delay, and that busiest airports are not necessarily the most congested.
 
 # Data Cleaning and Merging
 
 The flight data originally came in three separate csv files. The operations file contained all data on delays for each airport in a particular year. The cancellations file contained the number of cancellations and diversions for an airport in that year, and the airport file contained data on an airport's location. I merged these into a single dataframe using Pandas' merge function and dropped all NaN rows.
+
 
 
 
@@ -23,6 +24,7 @@ operations = pd.read_csv("../assets/Airport_operations.csv")
 # merge the datasets
 data = operations.merge(airports, left_on = "airport", right_on = "LocID", how = "left")
 ```
+
 
 
 ```python
@@ -248,8 +250,6 @@ for col in ['percent on-time airport departures', 'percent on-time gate arrivals
 fig.suptitle('Distributions of Percent On-Time Departures and Arrivals', fontsize = 20)
 plt.show()
 fig.tight_layout()
-
-
 ```
 
 
@@ -271,8 +271,6 @@ for col in ['departures for metric computation', 'arrivals for metric computatio
 fig.suptitle('Distributions of Total Arrivals and Departures', fontsize = 20)
 plt.show()
 fig.tight_layout()
-
-
 ```
 
 
@@ -280,6 +278,8 @@ fig.tight_layout()
 
 
 The arrival and departure data are heavily left skewed. The majority of airports had fewer than 100,000 flights pass through in a given year, but there are a few that had over 400,000 flights.
+
+### Example Airports
 
 
 ```python
@@ -307,10 +307,22 @@ plt.show()
 ```
 
 
-![png](../../../images/project_7_faa_files/project_7_faa_16_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_17_0.png)
 
 
-This graph contains the percent of on time departures and the average delay time for a few select airports of varying sizes and locations to demonstrate that there isn't necessarily a clear relationship between the two. The airports with the longest delay times are JFK, John F. Kennedy International Airport and HPN, the Westchester County Airport. Although they are both in the same Northeast region promixal to NYC, JFK is a busy international airport whereas HPN is serviced by only seven airlines with no international flights. Although both JFK and HPN have high average delay times, OGG (the Kahului Airport in Hawaii) has a very short
+This graph contains the percent of on time departures and the average delay time for a few select airports of varying sizes and locations to demonstrate that there isn't necessarily a clear relationship between the two. Among the airports with the longest delay times are JFK, John F. Kennedy International Airport, and HPN, the Westchester County Airport. Although they are both in the same Northeast region promixal to NYC and have long average departure delays, JFK is a busy international airport whereas HPN is serviced by only seven airlines with no international flights. In contrast, OGG (the Kahului Airport in Hawaii) has the shortest average departure delay, and a very high on-time departure rate.
+
+### Data Summary at a Glance
+
+
+
+    Mean Percent On-Time Departures:  72.6957571965 %
+    Mean Departure Delay:  15.7035043805 minutes
+    Max Departure Delay:  40.51 minutes (JFK in 2007)
+    Min Departure Delay:  6.29 minutes (OGG in 2010)
+
+
+### Correlations Between Features
 
 
 ```python
@@ -319,7 +331,7 @@ X = data[[u'departures for metric computation', u'Departure Cancellations',
        u'average_gate_departure_delay', u'average_taxi_out_time', u'average taxi out delay',
           u'average airport departure delay', u'average airborne delay',  u'arrivals for metric computation',
           u'Arrival Cancellations', u'Arrival Diversions', u'percent on-time gate arrivals', u'average taxi in delay',
-       u'average block delay', u'average gate arrival delay']]
+       u'average block delay', u'average gate arrival delay', 'Latitude','Longitude']]
 ```
 
 
@@ -330,7 +342,7 @@ plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_19_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_23_0.png)
 
 
 This heatmap is arranged with all departure-related features on its top and left halves and all arrival-related features on the bottom and right halves. The blue bands are percent on-time arrivals, departures, and gate departures, which are obviously negatively correlated with all delay metrics. In general, all delay features seem to be positively correlated with each other, there are a few specific observations to make.
@@ -338,6 +350,8 @@ This heatmap is arranged with all departure-related features on its top and left
 Average gate departure delays are strongly correlated with both average airport departure delays, as well as gate arrival delays. This makes sense, because if a plane is late leaving its gate, it will be behind schedule taking off, and an arriving plane can't pull into the gate until the first plane has left. In fact, average gate and aiport departure delays are more strongly correlated with average gate arrival delay than taxi-in delays.
 
 There are strong correlations between total arrivals, total departures, and number of cancellations and diversions. This is all a consequence of simply having more flights coming and going to busy airports. However, there is one delay-related factor that seems to be correlated with all of these: taxi-in delay. Taxi-in delay is weakly correlated with percent on-time departures, so this may be a problem only at airports of a certain size.
+
+Interestingly, longitude is negatively correlated with percent on-time departures and arrivals, so the greater the longitude (or the further east), the more unlikely flights are to be on time.
 
 These correlations point to delays originating with departing flights, as the effect of staying longer than anticipated at the gate makes the flight itself late to take off, but also prevents incoming flights from pulling into the gate at their scheduled times.
 
@@ -350,19 +364,19 @@ Xt = scale(X[[u'departures for metric computation', u'Departure Cancellations',
           u'Departure Diversions', u'average_gate_departure_delay', u'average_taxi_out_time', u'average taxi out delay',
           u'average airport departure delay', u'average airborne delay',  u'arrivals for metric computation',
           u'Arrival Cancellations', u'Arrival Diversions', u'average taxi in delay', u'average block delay',
-              u'average gate arrival delay']])
+              u'average gate arrival delay','Latitude','Longitude']])
 ```
 
 
 ```python
-pca = PCA(n_components = 14)
+pca = PCA(n_components = 16)
 pca = pca.fit(Xt)
 ```
 
 
 ```python
 # make dataframe of principal components
-Y = pd.DataFrame(pca.fit_transform(Xt), columns = ['PC{}'.format(str(i)) for i in range(1,15)])
+Y = pd.DataFrame(pca.fit_transform(Xt), columns = ['PC{}'.format(str(i)) for i in range(1,17)])
 Y['region'] = data['FAA REGION']
 Y['busy'] = [
     2 if x >= 300000 else 1 if (x < 300000 and x > 100000) else 0 for x in data['departures for metric computation']
@@ -378,29 +392,29 @@ exp_variances = np.cumsum(pca.explained_variance_ratio_*100)
 
 ```python
 plt.figure(figsize = (6,6))
-plt.plot(range(1, 15), exp_variances, '-o')
+plt.plot(range(1, 17), exp_variances, '-o')
 plt.xlabel("Number of components")
 plt.ylabel("Cumulative % Explained Variance")
 plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_26_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_30_0.png)
 
 
 
 ```python
 # scree plot of eigenvalues from pca.explained_variance
 plt.figure(figsize = (8,6))
-plt.plot(range(1,15), pca.explained_variance_, "-o")
-plt.xticks(range(1,15))
+plt.plot(range(1,17), pca.explained_variance_, "-o")
+plt.xticks(range(1,17))
 plt.ylabel("Eigenvalues")
 plt.xlabel("PCA Components")
 plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_27_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_31_0.png)
 
 
 From examining the cumulative explained variance curve as well as the eigenvalues plot, I will select the first three principle components, as these will account for approximately 85% of the variance in the data and this seems to be where an "elbow" occurs in the eigenvalue plot.
@@ -412,7 +426,7 @@ eigenvectors = pd.DataFrame(pca.components_, columns = [u'departures for metric 
           u'Departure Diversions', u'average_gate_departure_delay', u'average_taxi_out_time', u'average taxi out delay',
           u'average airport departure delay', u'average airborne delay',  u'arrivals for metric computation',
           u'Arrival Cancellations', u'Arrival Diversions', u'average taxi in delay', u'average block delay',
-              u'average gate arrival delay'])
+              u'average gate arrival delay', 'Latitude','Longitude'])
 eigenvectors.head(3)
 ```
 
@@ -438,59 +452,67 @@ eigenvectors.head(3)
       <th>average taxi in delay</th>
       <th>average block delay</th>
       <th>average gate arrival delay</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.302891</td>
-      <td>0.302562</td>
-      <td>0.292481</td>
-      <td>0.158552</td>
-      <td>0.286629</td>
-      <td>0.288579</td>
-      <td>0.255493</td>
-      <td>0.203416</td>
-      <td>0.302640</td>
-      <td>0.302210</td>
-      <td>0.289626</td>
-      <td>0.299519</td>
-      <td>0.217245</td>
-      <td>0.173862</td>
+      <td>0.296668</td>
+      <td>0.298337</td>
+      <td>0.285840</td>
+      <td>0.165382</td>
+      <td>0.286638</td>
+      <td>0.288277</td>
+      <td>0.260309</td>
+      <td>0.206061</td>
+      <td>0.296403</td>
+      <td>0.297720</td>
+      <td>0.283809</td>
+      <td>0.294027</td>
+      <td>0.216516</td>
+      <td>0.180060</td>
+      <td>0.064057</td>
+      <td>0.107449</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.255345</td>
-      <td>0.138365</td>
-      <td>0.268606</td>
-      <td>-0.444343</td>
-      <td>-0.106630</td>
-      <td>-0.123655</td>
-      <td>-0.379182</td>
-      <td>-0.197965</td>
-      <td>0.256646</td>
-      <td>0.154566</td>
-      <td>0.182089</td>
-      <td>0.130730</td>
-      <td>-0.264484</td>
-      <td>-0.475898</td>
+      <td>0.254314</td>
+      <td>0.143402</td>
+      <td>0.268331</td>
+      <td>-0.415843</td>
+      <td>-0.087365</td>
+      <td>-0.098885</td>
+      <td>-0.347215</td>
+      <td>-0.181191</td>
+      <td>0.255471</td>
+      <td>0.158649</td>
+      <td>0.191832</td>
+      <td>0.148109</td>
+      <td>-0.205680</td>
+      <td>-0.434799</td>
+      <td>-0.161557</td>
+      <td>-0.303987</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.007805</td>
-      <td>0.234070</td>
-      <td>0.109756</td>
-      <td>0.432053</td>
-      <td>-0.394528</td>
-      <td>-0.372579</td>
-      <td>0.129877</td>
-      <td>-0.506134</td>
-      <td>-0.006141</td>
-      <td>0.234982</td>
-      <td>0.150449</td>
-      <td>0.017603</td>
-      <td>-0.188877</td>
-      <td>0.255056</td>
+      <td>-0.035789</td>
+      <td>0.097352</td>
+      <td>0.081780</td>
+      <td>0.284030</td>
+      <td>-0.199692</td>
+      <td>-0.198152</td>
+      <td>0.106102</td>
+      <td>-0.500504</td>
+      <td>-0.035115</td>
+      <td>0.094163</td>
+      <td>0.137457</td>
+      <td>0.116878</td>
+      <td>-0.056067</td>
+      <td>0.197648</td>
+      <td>-0.640200</td>
+      <td>0.257408</td>
     </tr>
   </tbody>
 </table>
@@ -500,13 +522,13 @@ eigenvectors.head(3)
 
 **PC1:** The first principal component seems to be composed of the factors reflecting how busy an airport is. It weights number of departures, arrivals, diversions, and cancellations relatively equally, as well as factors related to taxiing. An airport high on PC1 likely has longer delays at any point in an airplane's journey.
 
-**PC2:** The second principal component negatively weights departure, arrival, gate, and block delays, so an airport high on PC2 likely has shorter delays.
+**PC2:** The second principal component negatively weights gate and arrival delays. An airport high on PC2 is more likely to have shorter delays. Since PC2 also negatively weights longitude, high PC2 score may correspond to being further east.
 
-**PC3:** The third principal component negatively weights airborne delays and taxi out time and delays. An airport high in PC3 has longer airborne delays and takes longer to taxi to the runway.
+**PC3:** The third principal component negatively weights airborne delays and taxi out time and delays. An airport high in PC3 has shorter airborne delays and takes longer to taxi to the runway. This component strongly accounts for latitude, so an airport high in PC3 is more likely to be in the south of the U.S.
 
 
 ```python
-# plot against percent departure delays
+# plot against percent on-time departures
 fig = plt.figure(figsize = (10,8))
 ax = fig.add_subplot(111, projection='3d')
 p = ax.scatter(
@@ -522,8 +544,33 @@ plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_31_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_35_0.png)
 
+
+This shows the airports plotted in the dimension of the three principal components. The colors represent the percent on-time departures. Airports with the darkest color are those with the most frequent delays. These seem to be clustered in the high end of PC1 and the lower range of PC3.
+
+
+```python
+# plot against gate departure delays
+fig = plt.figure(figsize = (10,8))
+ax = fig.add_subplot(111, projection='3d')
+p = ax.scatter(
+    Y['PC1'], Y['PC2'], Y['PC3'],
+    zdir='x', s = 10, c = X['average_gate_departure_delay'],
+    cmap = 'gist_heat', depthshade=True)
+ax.set_xlabel("PC1")
+ax.set_ylabel("PC2")
+ax.set_zlabel("PC3")
+ax.set_title("Gate Departure Delay vs. Principal Components")
+fig.colorbar(p, shrink=0.5, aspect=5)
+plt.show()
+```
+
+
+![png](../../../images/project_7_faa_files/project_7_faa_37_0.png)
+
+
+In this plot, the color represents average duration of gate delays. It's clear that the longest delays correspond to the edges of the clusters that also had the lowest percent of on-time departures.
 
 
 ```python
@@ -536,12 +583,12 @@ p = ax.scatter(
     cmap = 'gist_heat', depthshade=True)
 
 # make a mask for JFK and OGG and plot them in different colors
-mask = ((Y['airport'] == 'HPN') | (Y['airport'] == 'OGG'))
+mask = ((Y['airport'] == 'ATL') | (Y['airport'] == 'OGG') | (Y['airport'] == 'HPN'))
 
-color_dict = {'HPN':'green', 'OGG': 'blue'}
+color_dict = {'ATL':'green', 'OGG': 'blue', 'HPN': 'black'}
 color_map = [color_dict[i] for i in Y[mask]['airport']]
 
-ax.scatter(Y[mask]['PC1'], Y[mask]['PC2'], Y[mask]['PC3'], s = 10, c = color_map)
+ax.scatter(Y[mask]['PC1'], Y[mask]['PC2'], Y[mask]['PC3'], s = 10, c = color_map, zdir='x')
 ax.set_xlabel("PC1")
 ax.set_ylabel("PC2")
 ax.set_zlabel("PC3")
@@ -551,35 +598,10 @@ plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_32_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_39_0.png)
 
 
-
-```python
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-color_dict = {
-    'ASW': u'orchid', 'AAL': u'darkcyan', 'ASO': u'grey', 'ANE': u'dodgerblue',
-    'AEA': u'turquoise', 'AWP': u'darkviolet', 'AGL': '#624ea7', 'ANM': 'maroon', 'ACE': 'k'
-}
-color_map = [color_dict[i] for i in Y['region']]
-fig = plt.figure(figsize = (10,8))
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(Y['PC1'], Y['PC2'], Y['PC3'], zdir='x', s = 10, c=color_map, depthshade=False)
-ax.set_xlabel("PC1")
-ax.set_ylabel("PC2")
-ax.set_zlabel("PC3")
-ax.set_title("Flight Volume vs Principal Components")
-ax.legend(labels = color_dict.keys())
-plt.show()
-```
-
-
-![png](project_7_faa_files/project_7_faa_33_0.png)
-
-
-This plot of
+This is the same graph, but I've indicated three example airports, ATL, OGG, and HPN in green, blue, and black, respectively. ATL is one of the busiest airports in the U.S., but has an above on-time departure rate and a higher than average departure delay time. OGG, in contrast, is located on the island of Maui and is much less busy, but with the highest on-time departure rate and one of the lowest average departure delays. HPN, though also a small airport, has a low on-time departure rate and long average departure delays.
 
 
 ```python
@@ -599,33 +621,11 @@ plt.show()
 ```
 
 
-![png](project_7_faa_files/project_7_faa_35_0.png)
+![png](../../../images/project_7_faa_files/project_7_faa_41_0.png)
 
 
+In this graph, the colors represent arrival and departing flight volume. Red corresponds to over 300,000 flights in a year, green is between 300,000 and 100,000, and blue represents those airports with fewer than 100,000 flights. These flight volumes roughly seem to correspond to three clusters in the points. Contrary to what I might have predicted, the flights with the lowest percent of on-time departures are located in the medium and low-volume airport clusters.
 
-```python
-# try dbscan to find best clusters
-Y_cluster = Y[[u'PC1', u'PC2', u'PC3', u'PC4', u'PC5', u'PC6', u'PC7', u'PC8', u'PC9',
-       u'PC10', u'PC11', u'PC12', u'PC13', u'PC14']]
-db = DBSCAN(eps = 3, min_samples = 5)
-db.fit(Y_cluster)
-labels = db.labels_
+# Conclusions and Recommendations
 
-fig, ax = plt.subplots(figsize = (6,6))
-ax.scatter(Y_cluster['PC1'], Y_cluster['PC2'], c = labels)
-plt.show()
-
-print "Silhouette score: ", silhouette_score(Y_cluster[['PC1','PC2']], labels, metric = 'euclidean')
-```
-
-
-![png](project_7_faa_files/project_7_faa_36_0.png)
-
-
-    Silhouette score:  0.587743805013
-
-
-
-```python
-
-```
+Clearly, reducing flight delays is a complex challenge! I would recommend that the FAA focus efforts on reducing delays at the gate for departing flights. This factor seems to have a cascading effect on airport departure delays, as well as arrival times for incoming flights that can't access their gates. For larger airports, it may be worth investigating taxi-in delays, but this effect is probably less important at smaller ones. Surprisingly, the majority of those airports with the most frequent and longest delays are not the busiest, so it may be worthwhile to direct some attention to these locations. Overall, the key to reducing both frequency and duration of departure delays seems to be in the reduction of gate departure delays.
