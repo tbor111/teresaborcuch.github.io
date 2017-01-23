@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Principal Component Analysis of FAA Flight Delays
+title: Principal Component Analysis of FAA Data
 ---
-# Using Data to Reduce Delays
+# Using Data to Reduce Flight Delays
 
 Given operational data for 74 airports over a 10 year period, I conducted a principal component analysis to examine underlying factors impacting flight delays. The data contains durations of gate, taxiing, and total delays for both arrivals and departures, volume of arrivals, departures, cancellations, and diversions, as well as the percent of flights that were delayed arriving or departing. PCA revealed three components that roughly correspond to overall delays and flight volume, gate and arrival delays, and airborne and taxi delays. It appears that gate delays are the most related to overall departure delay, and that busiest airports are not necessarily the most congested.
 
@@ -190,7 +190,7 @@ data = data.merge(cancellations, left_on = ["airport","year"], right_on = ['Airp
 
 # Exploratory Data Analysis
 
-These data seem deceptively straightforward. Longer delays mean fewer on-time flights, right? There's a bit more to it. First, I want to differentiate between how frequently an airport has a late flight (the percent on-time columns for arrivals and departures), and how late it is (the average delay columns). Having every flight arrive one minute late may not have the same effect as having 5% of the flights arrive 1 hour late.
+These data seem deceptively straightforward. Longer delays mean fewer on-time flights, right? There's a bit more to it. First, I want to differentiate between how frequently an airport has a late flight (the percent on-time columns for arrivals and departures), and how late it is (the average delay columns). Having every flight arrive one minute late may not have the same effect as having 5% of the flights arrive one hour late.
 
 It's also important to understand how each variable is defined. [This website](http://aspmhelp.faa.gov/index.php/ASPM_Airport_Analysis:_Definitions_of_Variables) provides the definitions of the Aviation System Performance Metrics. One distinction that needs to be made is that all of the average delay times only include delays > 1 minute, so a flight that is on time is not included. Therefore, the average delays are not truly averaged across all flights. It's more accurate to think of them as the average delay, when there is a delay.
 
@@ -217,61 +217,17 @@ fig.tight_layout()
 From these plots, I can see that the average flight is delayed  around 12 minutes at the gate, and only about 3 minutes in taxi-ing out. It seems that the majority of the total average departure delay comes from sitting at the gate rather than slow taxi-ing out.
 
 
-```python
-# plot histograms for arrival delays
-fig = plt.figure(figsize = (14,6))
-count = 1
-for col in ['average airborne delay', 'average taxi in delay','average gate arrival delay']:
-    ax = fig.add_subplot(1,3,count)
-    ax.hist(data[col], color = "navy")
-    ax.set_xlabel(col)
-    count +=1
-fig.suptitle('Distributions of Arrival Delays', fontsize = 20)
-plt.show()
-fig.tight_layout()
-```
-
-
 ![png](../../../images/project_7_faa_files/project_7_faa_10_0.png)
 
 
 From these histograms, I can see the average airborne and taxi-in delays are between 2-3 and 1-2 minutes respectively, but the average gate arrival delay is significantly longer, between 10-15 minutes. Average gate arrival is defined as the difference between scheduled and actual arrival times, and I hypothesize that this difference between average gate arrival delay and the other arrival delays actually spills over from departure delays.
 
 
-```python
-# plot histograms for on time departures and arrivals
-fig = plt.figure(figsize = (14,6))
-count = 1
-for col in ['percent on-time airport departures', 'percent on-time gate arrivals', 'average block delay']:
-    ax = fig.add_subplot(1,3,count)
-    ax.hist(data[col], color = "navy")
-    ax.set_xlabel(col)
-    count +=1
-fig.suptitle('Distributions of Percent On-Time Departures and Arrivals', fontsize = 20)
-plt.show()
-fig.tight_layout()
-```
-
 
 ![png](../../../images/project_7_faa_files/project_7_faa_12_0.png)
 
 
 Here, I can see that in fact, most flights do depart and arrive on time. The majority of airports had between 70 and 80% of their flights leave and arrive on time. Average block delay is difference in minutes between scheduled and actual gate-to-gate time. The fact that this is lower than the average departure and arrival times may be explained by the fact that it includes on-time flights, and possibly flights that arrive early.
-
-
-```python
-# plot histograms for on time departures and arrivals
-fig = plt.figure(figsize = (14,6))
-count = 1
-for col in ['departures for metric computation', 'arrivals for metric computation']:
-    ax = fig.add_subplot(1,2,count)
-    ax.hist(data[col], color = "navy")
-    ax.set_xlabel(col)
-    count +=1
-fig.suptitle('Distributions of Total Arrivals and Departures', fontsize = 20)
-plt.show()
-fig.tight_layout()
-```
 
 
 ![png](../../../images/project_7_faa_files/project_7_faa_14_0.png)
@@ -312,7 +268,7 @@ plt.show()
 
 This graph contains the percent of on time departures and the average delay time for a few select airports of varying sizes and locations to demonstrate that there isn't necessarily a clear relationship between the two. Among the airports with the longest delay times are JFK, John F. Kennedy International Airport, and HPN, the Westchester County Airport. Although they are both in the same Northeast region promixal to NYC and have long average departure delays, JFK is a busy international airport whereas HPN is serviced by only seven airlines with no international flights. In contrast, OGG (the Kahului Airport in Hawaii) has the shortest average departure delay, and a very high on-time departure rate.
 
-### Data Summary at a Glance
+### Select Data Summary at a Glance
 
 
 
@@ -326,10 +282,13 @@ This graph contains the percent of on time departures and the average delay time
 
 
 ```python
+# select relevantfeatures from data
 X = data[[u'departures for metric computation', u'Departure Cancellations',
-          u'Departure Diversions', u'percent on-time gate departures','percent on-time airport departures',
-       u'average_gate_departure_delay', u'average_taxi_out_time', u'average taxi out delay',
-          u'average airport departure delay', u'average airborne delay',  u'arrivals for metric computation',
+          u'Departure Diversions', u'percent on-time gate departures',
+          'percent on-time airport departures', u'average_gate_departure_delay',
+          u'average_taxi_out_time', u'average taxi out delay',
+          u'average airport departure delay',
+          u'average airborne delay', u'arrivals for metric computation',
           u'Arrival Cancellations', u'Arrival Diversions', u'percent on-time gate arrivals', u'average taxi in delay',
        u'average block delay', u'average gate arrival delay', 'Latitude','Longitude']]
 ```
@@ -386,11 +345,13 @@ Y['airport'] = data['airport']
 
 
 ```python
+# Use cumulative sum to get total explained variances
 exp_variances = np.cumsum(pca.explained_variance_ratio_*100)
 ```
 
 
 ```python
+# plot cumulative explained variance
 plt.figure(figsize = (6,6))
 plt.plot(range(1, 17), exp_variances, '-o')
 plt.xlabel("Number of components")
@@ -404,7 +365,7 @@ plt.show()
 
 
 ```python
-# scree plot of eigenvalues from pca.explained_variance
+# scree plot of eigenvalues
 plt.figure(figsize = (8,6))
 plt.plot(range(1,17), pca.explained_variance_, "-o")
 plt.xticks(range(1,17))
@@ -421,12 +382,14 @@ From examining the cumulative explained variance curve as well as the eigenvalue
 
 
 ```python
-# eigenvectors are in pca.components_
+# Make a dataframe of eigenvectors and examine top 3
 eigenvectors = pd.DataFrame(pca.components_, columns = [u'departures for metric computation', u'Departure Cancellations',
           u'Departure Diversions', u'average_gate_departure_delay', u'average_taxi_out_time', u'average taxi out delay',
-          u'average airport departure delay', u'average airborne delay',  u'arrivals for metric computation',
-          u'Arrival Cancellations', u'Arrival Diversions', u'average taxi in delay', u'average block delay',
-              u'average gate arrival delay', 'Latitude','Longitude'])
+          u'average airport departure delay', u'average airborne delay',
+          u'arrivals for metric computation', u'Arrival Cancellations',
+          u'Arrival Diversions', u'percent on-time gate arrivals',
+          u'average taxi in delay', u'average block delay',
+          u'average gate arrival delay', 'Latitude','Longitude'])
 eigenvectors.head(3)
 ```
 
@@ -549,22 +512,6 @@ plt.show()
 
 This shows the airports plotted in the dimension of the three principal components. The colors represent the percent on-time departures. Airports with the darkest color are those with the most frequent delays. These seem to be clustered in the high end of PC1 and the lower range of PC3.
 
-
-```python
-# plot against gate departure delays
-fig = plt.figure(figsize = (10,8))
-ax = fig.add_subplot(111, projection='3d')
-p = ax.scatter(
-    Y['PC1'], Y['PC2'], Y['PC3'],
-    zdir='x', s = 10, c = X['average_gate_departure_delay'],
-    cmap = 'gist_heat', depthshade=True)
-ax.set_xlabel("PC1")
-ax.set_ylabel("PC2")
-ax.set_zlabel("PC3")
-ax.set_title("Gate Departure Delay vs. Principal Components")
-fig.colorbar(p, shrink=0.5, aspect=5)
-plt.show()
-```
 
 
 ![png](../../../images/project_7_faa_files/project_7_faa_37_0.png)
