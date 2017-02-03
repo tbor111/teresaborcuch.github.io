@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Introducing the Capstone Project
+category: capstone
 ---
 # Categorizing News Articles Using NLP
 
