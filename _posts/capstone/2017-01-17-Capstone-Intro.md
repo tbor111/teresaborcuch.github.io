@@ -44,11 +44,11 @@ I constructed word clouds from opinion and non-opinion article titles using a [w
 
 Here are the words from opinion titles:
 
-![png]('/Users/teresaborcuch/capstone_project/opinion_big.png')
+![png]('Users/teresaborcuch/capstone_project/opinion_big.png')
 
 And here are the words from non-opinion titles:
 
-![png]('/Users/teresaborcuch/capstone_project/non_opinion_big.png')
+![png]('Users/teresaborcuch/capstone_project/non_opinion_big.png')
 
 Obviously, "Trump" is yuge in both clouds, but "Donald" appears more "bigly" in the opinion pieces, probably because non-opinion pieces typically refer to him as Mr. Trump or President Trump. Additionally, "health" seems to appear more frequently among opinion titles, and immigration more frequently among non-opinion titles
 
