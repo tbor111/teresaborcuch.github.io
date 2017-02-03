@@ -10,6 +10,10 @@ image:
 
 I'm a data science student at General Assembly in Boston. In my previous life, I was a field biologist and animal behaviorist, but my current interests include natural language processing, consumer or patient behavior, recommendation algorithms, and social network analysis. When I'm not data science-ing, I'm probably rock climbing.
 
+### Disclaimer
+
+All projects on this blog were undertaken as purely academic exercises and none of the work was intended to be utilized for commercial purposes. I'm also new at this Python thing, so take my code with a grain of salt, and I credit any tutorials or other sources that I may rely upon.
+
 ### Contact me
 
 [tborcuch@gmail.com](mailto:tborcuch@gmail.com)
