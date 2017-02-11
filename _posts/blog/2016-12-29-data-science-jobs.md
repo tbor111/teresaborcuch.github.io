@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Which Data Science Jobs Pay Over 90k?
+category: blog
 ---
 # Analysis of Data Science Jobs From Indeed.com
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Iowa Liquor Sales
+category: blog
 ---
 
 # Predicting Profits with Linear Regression

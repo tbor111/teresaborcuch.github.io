@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Billboard Top 100 Analysis
+category: blog
 ---
 
 # Identifying Factors in a Song's Success

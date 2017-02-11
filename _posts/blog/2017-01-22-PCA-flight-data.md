@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Principal Component Analysis of FAA Data
+category: blog
 ---
 # Using Data to Reduce Flight Delays
 

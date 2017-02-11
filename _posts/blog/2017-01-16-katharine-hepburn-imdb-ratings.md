@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Katharine Hepburn and IMDb
+category: blog
 ---
 # Using Decision Trees to Predict Movie Ratings
 
