@@ -4,6 +4,7 @@ title: Introducing the Capstone Project
 category: capstone
 ---
 # Categorizing News Articles Using NLP
+This is first installment of a series of posts documenting my progress on my longest and most in-depth analysis to date.
 
 ## Backstory
 For this analysis, I will take a deep dive into the world of Natural Language Processing in order to classify news articles based on the type of language they use. Given the rise of so-called "fake news" and "alternative facts", the Facebook algorithms that preferentially show a user  content that aligns with their viewing preferences, and resulting "echo chamber" effect on users' newsfeeds, I've been thinking a lot about the intersection of machine learning, text classification, and journalism.

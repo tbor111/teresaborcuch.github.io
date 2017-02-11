@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Capstone
-excerpt: "An archive of blog posts sorted by date."
+title: Articles
+excerpt: "An archive of articles sorted by date."
 search_omit: true
 ---
 

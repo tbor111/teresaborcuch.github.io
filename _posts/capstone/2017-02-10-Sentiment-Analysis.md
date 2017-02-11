@@ -5,7 +5,7 @@ category: capstone
 ---
 # EDA: Sentiment Analysis
 
-By now, I've amassed a corpus of articles from three sources: *The New York Times* (1,425 articles), *The Washington Post* (447 articles), and FoxNews.com (309 articles). I'm aiming to have at least 1,000 articles from each source, but I'll start examining trends in the data I currently have.
+After about a week and a half of dedicated web-scraping, I've amassed a corpus of articles from three sources: *The New York Times* (1,425 articles), *The Washington Post* (447 articles), and FoxNews.com (309 articles). I'm aiming to have at least 1,000 articles from each source, but I'll start examining trends in the data I currently have.
 
 Sentiment analysis is a natural language processing technique that seeks to identify the polarity of written text - whether the document expresses positive, negative, or neutral feelings. This technique is commonly applied to text that may express strong opinions, such as reviews or social media posts, but I'm going to apply it to news articles and see if there are any differences in the sentiments expressed by different publications or in different sections.
 
@@ -13,7 +13,7 @@ The goal for this analysis is to derive scores for each article's body and title
 
 ## ArticleData Class
 
-I've been scraping each of my three sources at least twice a day to get fresh news and storing articles in a local postgres database. To facilitate the process of retrieving data and automate some of the cleaning and formatting, I've created a service class ArticleData. Objects of this class have a call method that creates a dataframe of article titles, dates, bodies, sections, and sources. Any articles that have a body of under 200 characters in length are dropped, all dates converted to datetime format, and the various sections from each source are condensed into business, world, politics, science/health, technology, sports, education, entertainment, or opinion.
+I've been scraping each of my three sources at least twice a day to get fresh news and storing articles in a local postgres database. To facilitate the process of retrieving data and automate some of the cleaning and formatting, I've created a service class ArticleData. Objects of this class have a call method that creates a dataframe of article titles, dates, bodies, sections, and sources. Any articles that have a body of under 200 characters in length are dropped, all dates converted to datetime format, and the various sections from each source are condensed into business, world, politics, science/health, technology, sports, education, entertainment, or opinion. (To see code for this class and anything else related to this project, see my [github](https://github.com/teresaborcuch/capstone_project).)
 
 ## Sentiment Scores
 
