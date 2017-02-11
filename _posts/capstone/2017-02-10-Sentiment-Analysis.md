@@ -26,9 +26,7 @@ from articledata import *
 
 ```python
 data = ArticleData().call()
-```
 
-```python
 data.shape
 ```
 
@@ -95,7 +93,7 @@ plt.show()
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_9_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_9_0.png)
 
 
 This plot shows the relationship between title scores and body scores for all articles. Interestingly, there seems to be little relationship between the sentiment score of the title and that of the body. The other feature of note is that article titles have a much wider score range than the bodies. This may be because the compute_score function averages the score of each word over the entire length of the document. Since article bodies contain many more words, and therefore more neutral words, their scores will be lower.
@@ -121,7 +119,7 @@ plt.show()
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_11_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_11_0.png)
 
 
 This histogram shows the distribution of article bodies' sentiment scores for all three publications. As I suspected, they are normally distributed tightly around zero.
@@ -231,7 +229,7 @@ plt.show()
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_15_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_15_0.png)
 
 
 This histogram shows the distribution of scores for the article bodies from three sections: opinion, world, and entertainment. The entertainment section has more articles scoring above zero than the other two sections, and the world news section has fewer. This makes sense, since the entertainment section is composed of stores about "lighter" topics such as the arts, dining, or travel, and the world news section might be a bit "heavier". It also seems like the opinion section has a wider range of scores than the other two.
@@ -271,7 +269,7 @@ plt.show()
 ```
 
 
-![png](second_blog_post_files/second_blog_post_19_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_19_0.png)
 
 
 The obvious observation from these graphs is that more opinion pieces mention Trump than not for all three publications, and the sentiment of the Trump-related articles spans a wider range than non-Trump-related articles.
@@ -291,7 +289,7 @@ print 'Mean Score for Opinion Pieces Not Mentioning "education": ', np.mean(ed_d
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_21_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_21_0.png)
 
 
     Mean Score for Opinion Pieces Mentioning "education":  0.00412250407705
@@ -310,7 +308,7 @@ et.plot_time()
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_26_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_26_0.png)
 
 
 
@@ -320,7 +318,7 @@ et.plot_time()
 ```
 
 
-![png](../images/second_blog_post_files/second_blog_post_27_0.png)
+![png](../../../images/second_blog_post_files/second_blog_post_27_0.png)
 
 
 These two graphs show the fluctuation in sentiment in articles that contain the word 'Trump' after January 1, 2017. The first shows politics articles from FoxNews.com, and the second from *The New York Times* politics section. Although the Fox library of political Trump articles is a little sparse to make comparisons between the two, we can see on *The New York Times* graph that January 31st marked a spike of positive articles mentioning Trump.
