@@ -4,6 +4,7 @@ title: Introducing the Capstone Project
 category: capstone
 ---
 # Categorizing News Articles Using NLP
+
 This is first installment of a series of posts documenting my progress on my longest and most in-depth analysis to date.
 
 ## Backstory
