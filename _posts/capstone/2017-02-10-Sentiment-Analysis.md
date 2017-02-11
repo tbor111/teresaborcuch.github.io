@@ -1,4 +1,8 @@
-
+---
+layout: post
+title: Sentiment Analysis
+category: capstone
+---
 # EDA: Sentiment Analysis
 
 By now, I've amassed a corpus of articles from three sources: *The New York Times* (1,425 articles), *The Washington Post* (447 articles), and FoxNews.com (309 articles). I'm aiming to have at least 1,000 articles from each source, but I'll start examining trends in the data I currently have.
@@ -324,4 +328,4 @@ These two graphs show the fluctuation in sentiment in articles that contain the 
 
 ## Next Steps
 
-Next, I'm hoping to work on interactive graphs using D3 that would allow me to show which titles are associated with highs and lows on an EvaluateTime plot, and also see if Named Entity Recognition yields any interesting features of my data. 
+Next, I'm hoping to work on interactive graphs using D3 that would allow me to show which titles are associated with highs and lows on an EvaluateTime plot, and also see if Named Entity Recognition yields any interesting features of my data.
