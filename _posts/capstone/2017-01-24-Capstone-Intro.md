@@ -2,6 +2,7 @@
 layout: post
 title: Introducing the Capstone Project
 category: capstone
+tags: [capstone, NLP, Naive Bayes]
 ---
 # Categorizing News Articles Using NLP
 

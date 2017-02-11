@@ -2,6 +2,7 @@
 layout: post
 title: Katharine Hepburn and IMDb
 category: blog
+tags: [NLP, decision trees, feature selection]
 ---
 # Using Decision Trees to Predict Movie Ratings
 

@@ -2,6 +2,7 @@
 layout: post
 title: Sentiment Analysis
 category: capstone
+tags: [sentiment analysis, capstone, NLP]
 ---
 # EDA: Sentiment Analysis
 

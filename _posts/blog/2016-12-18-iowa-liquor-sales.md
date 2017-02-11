@@ -2,6 +2,7 @@
 layout: post
 title: Iowa Liquor Sales
 category: blog
+tags: [pandas, scikit-learn, linear regression]
 ---
 
 # Predicting Profits with Linear Regression

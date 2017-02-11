@@ -2,6 +2,7 @@
 layout: post
 title: Principal Component Analysis of FAA Data
 category: blog
+tags: [pandas, PCA, 3D plots]
 ---
 # Using Data to Reduce Flight Delays
 

@@ -2,6 +2,7 @@
 layout: post
 title: Billboard Top 100 Analysis
 category: blog
+tags: [pandas, descriptive stats]
 ---
 
 # Identifying Factors in a Song's Success
