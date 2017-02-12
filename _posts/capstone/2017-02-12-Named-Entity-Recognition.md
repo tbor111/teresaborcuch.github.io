@@ -25,8 +25,8 @@ Here is my count_entities function. The idea is to count the total mentions of a
 ```python
 def count_entities(data = None, title = True):
     # set up tagger
-    os.environ['CLASSPATH'] = "/Users/teresaborcuch/stanford-ner-2013-11-12/stanford-ner.jar"
-    os.environ['STANFORD_MODELS'] = '/Users/teresaborcuch/stanford-ner-2013-11-12/classifiers'
+    os.environ['CLASSPATH'] = "../stanford-ner-2013-11-12/stanford-ner.jar"
+    os.environ['STANFORD_MODELS'] = '../stanford-ner-2013-11-12/classifiers'
     st = StanfordNERTagger('english.all.3class.distsim.crf.ser.gz')
 
     tagged_titles = []
@@ -139,7 +139,7 @@ data.head(1)
 
 ```python
 # pickle the file to avoid having to re-run this for future analyses
-data.to_pickle('/Users/teresaborcuch/capstone_project/notebooks/ss_entity_data.pkl')
+data.to_pickle('../capstone_project/notebooks/ss_entity_data.pkl')
 ```
 
 
@@ -273,8 +273,8 @@ def evaluate_entities(data = None, section = None, source = None):
         masked_data = data
 
     # set up tagger
-    os.environ['CLASSPATH'] = "/Users/teresaborcuch/stanford-ner-2013-11-12/stanford-ner.jar"
-    os.environ['STANFORD_MODELS'] = '/Users/teresaborcuch/stanford-ner-2013-11-12/classifiers'
+    os.environ['CLASSPATH'] = "../stanford-ner-2013-11-12/stanford-ner.jar"
+    os.environ['STANFORD_MODELS'] = '/../stanford-ner-2013-11-12/classifiers'
     st = StanfordNERTagger('english.all.3class.distsim.crf.ser.gz')
 
     # dictionaries to hold counts of entities
