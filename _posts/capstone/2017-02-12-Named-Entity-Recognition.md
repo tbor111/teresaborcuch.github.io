@@ -380,7 +380,122 @@ sorted_ep[:20]
 
 
 
-Now, I'll compare the top 20 people mentioned in entertainment articles. Trump still takes the number one spot, but interestingly, he's followed by a string of first names. NLTK provides a corpus of male and female-tagged first names, so counting the number of informal mentions or even the ratio of men to women might be a useful feature for classifying articles.
+These are the top 20 people mentioned in entertainment articles. Trump still takes the number one spot, but interestingly, he's followed by a string of first names.
+
+### Total Mentions of Men and Women
+
+NLTK provides a corpus of male and female-tagged first names, and I'll use this to count total mentions of men and women in each article body.
+
+```python
+from nltk.corpus import names
+male_names = names.words("male.txt")
+female_names = names.words("female.txt")
+
+# lists to store counts
+male_counts = []
+female_counts = []
+
+for x in data['body']:
+    m_count = 0
+    f_count = 0
+    tokens = word_tokenize(x)
+    tags = st.tag(tokens)
+    for pair in tags:
+        if pair[1] == 'PERSON':
+            if pair[0] in male_names:
+                m_count += 1
+            elif pair[0] in female_names:
+                f_count += 1
+            else:
+                continue
+    male_counts.append(m_count)
+    female_counts.append(f_count)
+
+# assign lists to columns in data
+data['f_count'] = female_counts
+data['m_count'] = male_counts
+
+# pickle the data since this took forever to run
+data.to_pickle('../ss_entity_data.pkl')
+```
+
+```python
+data.pivot_table(index = ['condensed_section'], values = ['f_count', 'm_count']).sort_values('f_count', ascending = False)
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>f_count</th>
+      <th>m_count</th>
+    </tr>
+    <tr>
+      <th>condensed_section</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>entertainment</th>
+      <td>3.590985</td>
+      <td>10.497496</td>
+    </tr>
+    <tr>
+      <th>politics</th>
+      <td>1.786932</td>
+      <td>10.514205</td>
+    </tr>
+    <tr>
+      <th>sports</th>
+      <td>1.758621</td>
+      <td>15.737069</td>
+    </tr>
+    <tr>
+      <th>education</th>
+      <td>1.692308</td>
+      <td>8.846154</td>
+    </tr>
+    <tr>
+      <th>other</th>
+      <td>1.407960</td>
+      <td>9.134328</td>
+    </tr>
+    <tr>
+      <th>world</th>
+      <td>1.175589</td>
+      <td>5.083512</td>
+    </tr>
+    <tr>
+      <th>business</th>
+      <td>1.097087</td>
+      <td>6.087379</td>
+    </tr>
+    <tr>
+      <th>sci_health</th>
+      <td>1.082251</td>
+      <td>3.376623</td>
+    </tr>
+    <tr>
+      <th>opinion</th>
+      <td>0.973684</td>
+      <td>6.172249</td>
+    </tr>
+    <tr>
+      <th>technology</th>
+      <td>0.333333</td>
+      <td>3.404040</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+Here are the average number of mentions of men and women per section in the corpus, and men outnumber women across the board. Unsurprisingly, sports sections have the greatest disparity, with 15.7 mentions of men on average, and only 1.75 mentions of women. Entertainment sections mention women the most frequently, but still only an average of 3.6 times per article, compared to 10.5 mentions of men. Although disheartening (look at the technology sections!), these counts will hopefully be a useful feature to classify articles.
 
 ### Commonly Mentioned Places in World News and Entertainment
 
