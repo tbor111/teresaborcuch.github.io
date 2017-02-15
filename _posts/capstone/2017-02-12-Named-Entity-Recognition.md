@@ -2,7 +2,7 @@
 layout: post
 title: Named Entity Recognition
 category: capstone
-tags: [NERTagger, capstone, NLP]
+tags: [capstone, NLP, named entity recognition]
 ---
 # EDA: Named Entity Recognition
 
