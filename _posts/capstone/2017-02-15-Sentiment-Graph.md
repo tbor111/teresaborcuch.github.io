@@ -93,7 +93,7 @@ Highcharts.chart('snow-sent-container', {
 
 </script>
 
-This is a somewhat frivolous example, which shows what the news has been saying about snow since January 1st. The error bars represent the highs and low scores of articles published on a given day, and mousing over will show the title of the article that received that score. Keep in mind that these articles only have to include the topic word once, so it may not be the main subject of the article.
+This is a somewhat frivolous example which shows what the news has been saying about snow since January 1st. The error bars represent the highs and low scores of articles published on a given day, and mousing over will show the title of the article that received that score. Keep in mind that these articles only have to include the topic word once, so it may not be the main subject of the article.
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -182,4 +182,4 @@ Highcharts.chart('education-sent-container', {
 
 </script>
 
-Finally, here are the scores of articles that contain the term "education". Since this is a very general word that could easily be used in articles not in articles not about our school systems or the recent pick for Secretary of Education, many of the titles seem off-topic. Perhaps I could include a parameter that sets a minimum number of mentions in before the article is included in the EvaluateTime dataset.
+Finally, here are the scores of articles that contain the term "education". Since this is a very general word that could easily be used in articles not about our school systems or the recent pick for Secretary of Education, many of the titles seem off-topic. Perhaps I could include a parameter that sets a minimum number of mentions in before the article is included in the EvaluateTime dataset.
