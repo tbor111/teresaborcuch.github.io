@@ -4,7 +4,7 @@ title: Tracking Sentiment Scores Over Time
 category: capstone
 tags: [Highcharts, sentiment analysis, NLP, graphs]
 ---
-# EDA: Plotting with Highcharts
+# EDA: Plotting with Highcharts, Part 1
 
 These plots show the changing sentiment scores of particular topics across all sections of every source. I created these graphs by writing the HighChartPlotter class, which takes data from an EvaluateTime object and reformats it into the appropriate javascript arrays for HighCharts. (Recall that EvaluateTime objects filter the data for mentions of a particular topic in the specified source, section and date range).
 
