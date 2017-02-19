@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Plotting with Highcharts, Part 2
+title: Happy Sentiment Graphs
 category: capstone
 tags: [Highcharts, sentiment analysis, NLP, graphs]
 ---
 
-# Happy Sentiment Graphs
+# Plotting with Highcharts, Part 2
 
 Here are a few topics that I thought would have higher than average sentiment scores over time. (Turns out 'birthday' is kind of a mixed bag...)
 
