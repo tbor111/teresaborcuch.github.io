@@ -2,7 +2,7 @@
 layout: post
 title: Categorizing News Articles with NLP
 category: capstone
-tags: [NLP, capstone, pipeline, sentiment analysis, named entity recognition, Naive Bayes]
+tags: [NLP, capstone, pipeline, sentiment analysis, named entity recognition, Naive Bayes, webscraping, feature selection]
 ---
 # The Final Capstone Write-up
 
@@ -141,8 +141,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 ```
 
 ## B. Data Cleaning and Standardization
@@ -258,7 +256,6 @@ class ArticleData():
         data = data[mask1 & mask2]
 
         return data
-
 ```
 
 
