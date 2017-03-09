@@ -4,8 +4,8 @@ title: About Me
 excerpt: "Data Scientist"
 modified: 2017-01-16T19:44:38.564948-04:00
 image:
-  feature: IMG_1516.jpg
-  credit: Allison Browne
+feature: IMG_1516.jpg
+credit: Allison Browne
 ---
 
 I'm a Boston-based data scientist using Python to solve problems related to natural language processing, consumer or patient behavior, recommendation algorithms, and social network analysis. This blog is my portfolio of projects, including work from General Assembly's 12-week Data Science Immersive program. When I'm not data science-ing, I'm probably rock climbing.
