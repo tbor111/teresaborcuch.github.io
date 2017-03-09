@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Which Data Science Jobs Pay Over 90k?
-category: blog
+category: gaprojects
 tags: [webscraping, gridsearch, logistic regression]
 ---
 # Analysis of Data Science Jobs From Indeed.com

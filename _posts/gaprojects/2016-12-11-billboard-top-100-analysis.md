@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Billboard Top 100 Analysis
-category: blog
+category: gaprojects
 tags: [pandas, descriptive stats]
 ---
 

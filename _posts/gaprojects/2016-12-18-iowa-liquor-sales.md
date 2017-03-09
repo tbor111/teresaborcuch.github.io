@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Iowa Liquor Sales
-category: blog
+category: gaprojects
 tags: [pandas, scikit-learn, linear regression]
 ---
 

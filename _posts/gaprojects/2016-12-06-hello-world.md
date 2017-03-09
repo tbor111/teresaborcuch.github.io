@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello World
-category: blog
+category: gaprojects
 ---
 
 **This is my first blog post!**
